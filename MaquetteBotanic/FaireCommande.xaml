@@ -1,0 +1,90 @@
+﻿<Window x:Class="MaquetteBotanic.FaireCommande"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MaquetteBotanic"
+        mc:Ignorable="d"
+        Title="Faire une commande" Height="550" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Background="#FFFAFFFA">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <RadioButton Content="Centrale d'achats Botanic" BorderBrush="#FF004C2E" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
+                <RadioButton Content="Achats fournisseurs locaux" Margin="20,0,0,0" BorderBrush="#FF004C2E" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
+            </StackPanel>
+            <TextBox x:Name="txtBoxRecherche" TextWrapping="Wrap" Text="Rechercher" Width="175" Margin="0,20,0,10" HorizontalAlignment="Left" BorderBrush="#FF003D2E" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Type" Width="150" Foreground="#FF00644C"/>
+                <Label Content="Catégorie" Margin="50,0,0,0" Width="150" Foreground="#FF00644C"/>
+                <Label Content="Couleur" Margin="50,0,0,0" Foreground="#FF00644C"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox Width="150" Foreground="#FF00644C"/>
+                <ComboBox Width="150" Margin="50,0,0,0" Foreground="#FF00644C"/>
+                <ComboBox Width="120" Margin="50,0,0,0" Foreground="#FF00644C"/>
+            </StackPanel>
+            <CheckBox Content="Fournisseur local" Margin="0,10,0,0" BorderBrush="#FF003D2E" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
+            <Label Content="Liste des produits" Margin="0,20,0,0" FontWeight="Bold" Foreground="#FF00644C"/>
+            <StackPanel Orientation="Horizontal">
+                <ListBox Height="73" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="2,2,0,2" BorderBrush="#FF004C2E">
+                    <ListViewItem Content="Nom" FontWeight="Bold" HorizontalAlignment="Center" Height="20" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="Article 1" Height="24" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="Article 2" Height="24" Foreground="#FF00644C"/>
+                </ListBox>
+                <ListBox Height="73" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0,2,0,2" BorderBrush="#FF004C2E">
+                    <ListViewItem Content="Prix" FontWeight="Bold" HorizontalAlignment="Center" Height="20" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="15 €" Height="24" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="85 €" Height="24" Foreground="#FF00644C"/>
+                </ListBox>
+                <ListBox Height="73" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0,2,2,2" BorderBrush="#FF004C2E">
+                    <ListViewItem Content="Détails" FontWeight="Bold" Height="20" HorizontalAlignment="Center" Foreground="#FF00644C"/>
+                    <Button Content="Détails" Height="20" Width="50" BorderBrush="#FF003D2E" Background="#FFEFFFF2" Foreground="#FF00644C"/>
+                    <Button Content="Détails" Height="20" Width="50" BorderBrush="#FF003D2E" Background="#FFEFFFF2" Foreground="#FF00644C"/>
+                </ListBox>
+                <Image Height="66" Source="/img/LogoBotanic.png" Stretch="Fill" Width="207" Margin="155,0,0,0"/>
+            </StackPanel>
+            <Label Content="Détails de la commande" Margin="0,15,0,5" FontWeight="Bold" Foreground="#FF00644C"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Date de création" Width="120" Margin="0,0,0,5" Foreground="#FF00644C"/>
+                <DatePicker Margin="15,0,0,5" FirstDayOfWeek="Monday" BorderBrush="#FF003D2E" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Mode de transport" Width="120" Foreground="#FF00644C"/>
+                <ComboBox Width="150" Margin="15,0,0,0" Foreground="#FF00644C">
+                    <ComboBoxItem Content="UPS" Foreground="#FF00644C"/>
+                    <ComboBoxItem Content="Chronopost" Foreground="#FF00644C"/>
+                    <ComboBoxItem Content="Botanic" Foreground="#FF00644C"/>
+                    <ComboBoxItem Content="Relais" Foreground="#FF00644C"/>
+                </ComboBox>
+            </StackPanel>
+            <Label Content="Produits commandés" Margin="0,15,0,5" FontWeight="Bold" Foreground="#FF00644C"/>
+            <StackPanel Orientation="Horizontal">
+                <ListBox Height="50" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="2,2,0,2" BorderBrush="#FF003D2E">
+                    <ListViewItem Content="Nom" FontWeight="Bold" HorizontalAlignment="Center" Height="20" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="Article 2" Height="24" Foreground="#FF00644C"/>
+                </ListBox>
+                <ListBox Height="50" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0,2,0,2" BorderBrush="#FF003D2E">
+                    <ListViewItem Content="Qte" FontWeight="Bold" HorizontalAlignment="Center" Height="20" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="3" Height="24" HorizontalAlignment="Center" Foreground="#FF00644C"/>
+                </ListBox>
+                <ListBox Height="50" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0,2,0,2" BorderBrush="#FF003D2E">
+                    <ListViewItem Content="Total" FontWeight="Bold" HorizontalAlignment="Center" Height="20" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="255 €" Height="24" HorizontalAlignment="Center" Foreground="#FF00644C"/>
+                </ListBox>
+                <ListBox Height="50" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0,2,0,2" BorderBrush="#FF003D2E">
+                    <ListViewItem Content="Annuler" FontWeight="Bold" HorizontalAlignment="Center" Height="20" Foreground="#FF00644C"/>
+                    <Button Content="AnnuIer" Height="20" Width="50" BorderBrush="#FF003D2E" Background="#FFEFFFF2" Foreground="#FF00644C"/>
+                </ListBox>
+                <ListBox Height="50" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0,2,2,2" BorderBrush="#FF003D2E">
+                    <ListViewItem Content="Modifier" FontWeight="Bold" HorizontalAlignment="Center" Height="20" Foreground="#FF00644C"/>
+                    <Button Content="Modifier" Height="20" Width="50" Background="#FFEFFFF2" BorderBrush="#FF003D2E" Foreground="#FF00644C"/>
+                </ListBox>
+                <Label Content="Montant total : 255 €" Margin="115,15,0,0" FontWeight="Bold" FontSize="14" Foreground="#FF00644C" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                <Button x:Name="butValider" Content="Valider" Height="25" Width="100" Margin="0,5,0,0" IsDefault="True" Background="#FF00644C" BorderBrush="#FF003D29" Foreground="White" BorderThickness="2,2,2,2" Click="butValider_Click"/>
+                <Button x:Name="butAnnuler" Content="Annuler" Height="25" Width="100" Margin="35,5,0,0" IsCancel="True" Foreground="White" Background="#FF00644C" BorderBrush="#FF003D29" BorderThickness="2,2,2,2" Click="butAnnuler_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

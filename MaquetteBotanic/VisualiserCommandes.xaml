@@ -1,0 +1,65 @@
+﻿<Window x:Class="MaquetteBotanic.VisualiserCommandes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MaquetteBotanic"
+        mc:Ignorable="d"
+        Title="Visualiser les commandes" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Background="#FFFAFFFA">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="txtBoxRecherche" TextWrapping="Wrap" Text="Rechercher" Width="200" Margin="0,20,0,10" HorizontalAlignment="Left" BorderBrush="#FF003D2E" Foreground="#FF00644C" BorderThickness="2,2,2,2" Height="25" FontSize="14"/>
+                <Image Height="66" Source="/img/LogoBotanic.png" Stretch="Fill" Width="207" Margin="200,0,0,0"/>
+            </StackPanel>
+            <Label Content="Liste des commandes" Margin="0,10,0,0" FontWeight="Bold" Foreground="#FF00644C"/>
+            <StackPanel Orientation="Horizontal">
+                <ListBox Height="73" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="2,2,0,2" BorderBrush="#FF004C2E">
+                    <ListViewItem Content="Nom" FontWeight="Bold" HorizontalAlignment="Center" Height="20" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="Commande n°02837" Height="24" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="Commande n°09573" Height="24" Foreground="#FF00644C"/>
+                </ListBox>
+                <ListBox Height="73" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0,2,0,2" BorderBrush="#FF004C2E">
+                    <ListViewItem Content="Date" FontWeight="Bold" HorizontalAlignment="Center" Height="20" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="22/05/2024" Height="24" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="23/05/2024" Height="24" Foreground="#FF00644C"/>
+                </ListBox>
+                <ListBox Height="73" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0,2,2,2" BorderBrush="#FF004C2E">
+                    <ListViewItem Content="Total" FontWeight="Bold" HorizontalAlignment="Center" Height="20" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="255 €" Height="24" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="578 €" Height="24" Foreground="#FF00644C"/>
+                </ListBox>
+            </StackPanel>
+            <Rectangle Height="4" Stroke="#FF00644C" Margin="0,15,0,15" StrokeThickness="2"/>
+            <Label Content="Détails de la commande sélectionnée" FontWeight="Bold" Foreground="#FF00644C"/>
+            <Label Content="Commande n°02837" Width="120" Margin="0,5,0,0" Foreground="#FF00644C" HorizontalAlignment="Left"/>
+            <StackPanel Orientation="Horizontal">
+                <ListBox Height="50" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="2,2,0,2" BorderBrush="#FF004C2E">
+                    <ListViewItem Content="Nom" FontWeight="Bold" HorizontalAlignment="Center" Height="20" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="Article 2" Height="24" Foreground="#FF00644C"/>
+                </ListBox>
+                <ListBox Height="50" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0,2,0,2" BorderBrush="#FF004C2E">
+                    <ListViewItem Content="Quantité" FontWeight="Bold" HorizontalAlignment="Center" Height="20" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="3" Height="24" Foreground="#FF00644C" HorizontalAlignment="Center"/>
+                </ListBox>
+                <ListBox Height="50" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0,2,0,2" BorderBrush="#FF004C2E">
+                    <ListViewItem Content="Prix" FontWeight="Bold" HorizontalAlignment="Center" Height="20" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="85 €" Height="24" Foreground="#FF00644C"/>
+                </ListBox>
+                <ListBox Height="50" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0,2,2,2" BorderBrush="#FF004C2E">
+                    <ListViewItem Content="Total" FontWeight="Bold" HorizontalAlignment="Center" Height="20" Foreground="#FF00644C"/>
+                    <ListBoxItem Content="255 €" Height="24" Foreground="#FF00644C"/>
+                </ListBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Mode de transport" Width="120" Margin="0,5,0,0" Foreground="#FF00644C" HorizontalAlignment="Left"/>
+                <Label Content="Hélicoptère" Width="200" Margin="15,5,0,0" Foreground="#FF00644C" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Date de livraison" Width="120" Foreground="#FF00644C" HorizontalAlignment="Left"/>
+                <TextBox TextWrapping="Wrap" Text="A définir" Margin="15,5,0,0" Width="100" HorizontalAlignment="Left" BorderBrush="#FF003D2E" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
+            </StackPanel>
+            <Button x:Name="butRetourMenu" Content="Retour au menu" Width="125" Margin="0,20,0,0" Foreground="White" BorderBrush="#FF004C29" Background="#FF00644C" BorderThickness="2,2,2,2" Height="30" Click="butRetourMenu_Click" IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>

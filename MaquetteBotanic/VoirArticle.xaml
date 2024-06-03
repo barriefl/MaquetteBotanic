@@ -1,0 +1,47 @@
+﻿<Window x:Class="MaquetteBotanic.VoirArticle"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MaquetteBotanic"
+        mc:Ignorable="d"
+        Title="Un article" Height="450" Width="800" Background="#FFFAFFFA">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Rectangle Height="150" Stroke="#FF00644C" Width="150" StrokeThickness="2"/>
+            <Label Content="Description" Margin="0,30,0,0" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold" Foreground="#FF00644C"/>
+            <TextBlock TextWrapping="Wrap" Text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna." Width="300" Foreground="#FF00644C"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Label Content="Pervenche" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="#FF00644C"/>
+            <Label Content="9,95 €" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="#FF00644C" FontSize="14"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Quantité" Width="100" Foreground="#FF00644C" Margin="50,0,0,0"/>
+                <Slider Width="120" Foreground="#FF00644C" VerticalAlignment="Center"/>
+                <Label Content="1 - 100" Width="100" Foreground="#FF00644C"/>
+            </StackPanel>
+            <Button x:Name="butAjouterQuantite" Content="Ajouter" Width="100" Margin="0,20,0,0" Foreground="White" BorderBrush="#FF004C29" Background="#FF00644C" BorderThickness="2,2,2,2" Height="25" IsDefault="True" Click="butAjouterQuantite_Click"/>
+            <Label Content="Caractéristiques" Margin="0,30,0,0" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold" Foreground="#FF00644C"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Content="Taille conteneur" Width="125" Foreground="#FF00644C"/>
+                <Label Content="Pot 3L" Foreground="#FF00644C" Width="100"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Content="Exposition" Width="125" Foreground="#FF00644C"/>
+                <Label Content="Partiellement" Foreground="#FF00644C" Width="100"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Content="Floraison" Width="125" Foreground="#FF00644C"/>
+                <Label Content="Toute l'année" Foreground="#FF00644C" Width="100"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Content="Taille adulte" Width="125" Foreground="#FF00644C"/>
+                <Label Content="0,2m" Foreground="#FF00644C" Width="100"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
