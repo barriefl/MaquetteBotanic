@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MaquetteBotanic.Classes
+namespace MaquetteBotanic
 {
     public class Couleur
     {
@@ -21,6 +21,16 @@ namespace MaquetteBotanic.Classes
             {
                 this.nom = value;
             }
+        }
+
+        public Couleur()
+        {
+
+        }
+
+        public Couleur(string nom)
+        {
+            this.Nom = nom;
         }
     }
 }

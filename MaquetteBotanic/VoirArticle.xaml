@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MaquetteBotanic"
         mc:Ignorable="d"
-        Title="Un article" Height="450" Width="800" Background="#FFFAFFFA">
+        Title="Un article" Height="450" Width="800" Background="#FFFAFFFA" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>

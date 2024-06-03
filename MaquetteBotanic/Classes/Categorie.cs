@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MaquetteBotanic.Classes
+namespace MaquetteBotanic
 {
     public class Categorie
     {
@@ -49,6 +49,16 @@ namespace MaquetteBotanic.Classes
             {
                 this.libelle = value;
             }
+        }
+
+        public Categorie()
+        {
+
+        }
+
+        public Categorie(int num)
+        {
+            this.Num = num;
         }
     }
 }

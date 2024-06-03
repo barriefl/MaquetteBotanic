@@ -40,7 +40,7 @@ namespace MaquetteBotanic
 
         private void butDeconnexion_Click(object sender, RoutedEventArgs e)
         {
-            PageConnexion pageConnexion = new PageConnexion();
+            PageConnexion pageConnexion = PageConnexion.Session;
             pageConnexion.Show();
             this.Close();
         }

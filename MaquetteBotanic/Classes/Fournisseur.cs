@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MaquetteBotanic.Classes
+namespace MaquetteBotanic
 {
     public class Fournisseur
     {
@@ -49,6 +49,16 @@ namespace MaquetteBotanic.Classes
             {
                 this.codeLocal = value;
             }
+        }
+
+        public Fournisseur()
+        {
+
+        }
+
+        public Fournisseur(int num)
+        {
+            this.Num = num;
         }
     }
 }

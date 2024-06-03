@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:MaquetteBotanic"
         mc:Ignorable="d"
         Title="Faire une commande" Height="650" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Window.DataContext>
+        <local:Produit x:Name="produit"/>
+    </Window.DataContext>
+
     <Grid Background="#FFFAFFFA">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
@@ -26,7 +31,12 @@
             <CheckBox x:Name="cbFournisseurLocal" Content="Fournisseur local" Margin="0,10,0,0" BorderBrush="#FF003D2E" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
             <Label Content="Liste des produits" Margin="0,20,0,0" FontWeight="Bold" Foreground="#FF00644C"/>
             <StackPanel Orientation="Horizontal">
-                <DataGrid x:Name="dgListeProduit" Height="100" Width="350" d:ItemsSource="{d:SampleData ItemCount=5}" BorderBrush="#FF003D29" Foreground="#FF00644C" BorderThickness="2,2,2,2" HorizontalScrollBarVisibility="Disabled"/>
+                <DataGrid x:Name="dgListeProduit" Height="100" Width="350" ItemsSource="{Binding LesProduits}" BorderBrush="#FF003D29" Foreground="#FF00644C" BorderThickness="2,2,2,2" HorizontalScrollBarVisibility="Disabled" AutoGenerateColumns="False" FontWeight="Bold">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="150" Binding="{Binding Nom}" Header="Nom" FontWeight="Normal"/>
+                        <DataGridTextColumn Width="80" Binding="{Binding PrixVente}" Header="Prix Vente" FontWeight="Normal"/>
+                    </DataGrid.Columns>
+                </DataGrid>
                 <Image Height="66" Source="/img/LogoBotanic.png" Stretch="Fill" Width="207" Margin="155,0,0,0"/>
             </StackPanel>
             <Label Content="Détails de la commande" Margin="0,15,0,5" FontWeight="Bold" Foreground="#FF00644C"/>
