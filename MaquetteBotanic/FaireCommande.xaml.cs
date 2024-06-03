@@ -41,5 +41,11 @@ namespace MaquetteBotanic
             this.Close();
             menu.Show();
         }
+
+        private void butDebug_Click(object sender, RoutedEventArgs e)
+        {
+            VoirArticle article = new VoirArticle();
+            article.ShowDialog();
+        }
     }
 }

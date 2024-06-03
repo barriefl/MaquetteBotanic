@@ -21,8 +21,8 @@
             <Label x:Name="labPrixArticle" Content="9,95 €" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="#FF00644C" FontSize="14"/>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Quantité" Width="100" Foreground="#FF00644C" Margin="50,0,0,0"/>
-                <Slider Width="120" Foreground="#FF00644C" VerticalAlignment="Center"/>
-                <Label x:Name="labQuantite" Content="1 - 100" Width="100" Foreground="#FF00644C"/>
+                <Slider x:Name="slQuantite" Width="120" Foreground="#FF00644C" VerticalAlignment="Center" Maximum="100" Minimum="1" SmallChange="1" LargeChange="10" Margin="0,0,25,0" Value="1"/>
+                <TextBox x:Name="tbQuantite" TextWrapping="Wrap" Width="50" BorderBrush="{x:Null}" Foreground="#FF00644C" FontSize="14" Text="{Binding ElementName=slQuantite, Path=Value, StringFormat=F0, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <Button x:Name="butAjouterQuantite" Content="Ajouter" Width="100" Margin="0,20,0,0" Foreground="White" BorderBrush="#FF004C29" Background="#FF00644C" BorderThickness="2,2,2,2" Height="25" IsDefault="True" Click="butAjouterQuantite_Click"/>
             <Label Content="Caractéristiques" Margin="0,30,0,0" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold" Foreground="#FF00644C"/>

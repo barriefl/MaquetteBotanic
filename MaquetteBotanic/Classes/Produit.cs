@@ -31,42 +31,42 @@ namespace MaquetteBotanic.Classes
             }
         }
 
-        public string NomCouleur
+        public Couleur Couleur
         {
             get
             {
-                return nomCouleur;
+                return couleur;
             }
 
             set
             {
-                nomCouleur = value;
+                couleur = value;
             }
         }
 
-        public int NumFournisseur
+        public Fournisseur Fournisseur
         {
             get
             {
-                return numFournisseur;
+                return fournisseur;
             }
 
             set
             {
-                numFournisseur = value;
+                fournisseur = value;
             }
         }
 
-        public int NumCategorie
+        public Categorie Categorie
         {
             get
             {
-                return numCategorie;
+                return categorie;
             }
 
             set
             {
-                numCategorie = value;
+                categorie = value;
             }
         }
 

@@ -51,6 +51,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
                 <Button x:Name="butValider" Content="Valider" Height="25" Width="100" Margin="0,5,0,0" IsDefault="True" Background="#FF00644C" BorderBrush="#FF003D29" Foreground="White" BorderThickness="2,2,2,2" Click="butValider_Click"/>
                 <Button x:Name="butAnnuler" Content="Annuler" Height="25" Width="100" Margin="35,5,0,0" IsCancel="True" Foreground="White" Background="#FF00644C" BorderBrush="#FF003D29" BorderThickness="2,2,2,2" Click="butAnnuler_Click"/>
+                <Button x:Name="butDebug" Content="Debug" Height="25" Width="100" Margin="35,5,0,0" IsCancel="True" Foreground="White" Background="#FF00644C" BorderBrush="#FF003D29" BorderThickness="2,2,2,2" Click="butDebug_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>
