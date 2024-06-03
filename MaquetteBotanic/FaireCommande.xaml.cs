@@ -22,6 +22,10 @@ namespace MaquetteBotanic
         public FaireCommande()
         {
             InitializeComponent();
+
+            // DatePicker (date de la commande) automatique sur la date d'aujourd'hui.
+            dpCreationCommande.SelectedDate = DateTime.Today;
+            dpCreationCommande.IsEnabled = false;
         }
 
         private void butValider_Click(object sender, RoutedEventArgs e)

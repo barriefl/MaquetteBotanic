@@ -11,12 +11,12 @@
             <Image Source="/img/LogoBotanic.png" Stretch="Fill" Margin="0,0,0,35" Width="200"/>
             <Label Content="Se connecter" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,25" FontSize="20" Foreground="#FF00644C"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Label x:Name="labUtilisateur" Content="Nom d'utilisateur" FontWeight="Bold" Foreground="#FF00644C"/>
-                <TextBox x:Name="txtBoxUtilisateur" TextWrapping="Wrap" Width="150" BorderThickness="2,2,2,2" Margin="15,0,0,0" FontSize="14" VerticalContentAlignment="Center" BorderBrush="#FF004C29" Foreground="#FF00644C" Background="#FFEFFFF2" />
+                <Label x:Name="labLogin" Content="Nom d'utilisateur" FontWeight="Bold" Foreground="#FF00644C" Target="{Binding ElementName=tbLogin, Mode=OneWay}"/>
+                <TextBox x:Name="tbLogin" TextWrapping="Wrap" Width="150" BorderThickness="2,2,2,2" Margin="15,0,0,0" FontSize="14" VerticalContentAlignment="Center" BorderBrush="#FF004C29" Foreground="#FF00644C" Background="#FFEFFFF2" Text="{Binding Login}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Label x:Name="labMotDePasse" Content="Mot de passe" Margin="0,10,0,0" FontWeight="Bold" Foreground="#FF00644C"/>
-                <PasswordBox Width="150" Margin="15,10,0,0" BorderBrush="#FF00644C" Foreground="#FF004C2E" Background="#FFEFFFF2" BorderThickness="2,2,2,2" FontSize="14"/>
+                <Label x:Name="labPassword" Content="Mot de passe" Margin="0,10,0,0" FontWeight="Bold" Foreground="#FF00644C" Target="{Binding ElementName=pbPassword, Mode=OneWay}"/>
+                <TextBox x:Name="tbPassword" TextWrapping="Wrap" Width="150" BorderThickness="2,2,2,2" Margin="15,10,0,0" FontSize="14" VerticalContentAlignment="Center" BorderBrush="#FF004C29" Foreground="#FF00644C" Background="#FFEFFFF2" Text="{Binding Password}"/>
             </StackPanel>
             <Button x:Name="butConnexion" Content="Se connecter" Width="100" Margin="0,20,0,0" Click="butConnexion_Click" Foreground="White" BorderBrush="#FF004C29" Background="#FF00644C" BorderThickness="2,2,2,2" Height="25"/>
         </StackPanel>

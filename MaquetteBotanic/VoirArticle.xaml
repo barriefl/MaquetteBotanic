@@ -12,35 +12,35 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <StackPanel>
-            <Rectangle Height="150" Stroke="#FF00644C" Width="150" StrokeThickness="2"/>
-            <Label Content="Description" Margin="0,30,0,0" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold" Foreground="#FF00644C"/>
-            <TextBlock TextWrapping="Wrap" Text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna." Width="300" Foreground="#FF00644C"/>
+            <Image Height="150" Source="/img/ImageLogo.png" Stretch="Fill" Width="150"/>
+            <Label Content="Description" Margin="0,30,0,0" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold" Foreground="#FF00644C" Target="{Binding ElementName=tbDescription, Mode=OneWay}"/>
+            <TextBlock x:Name="tbDescription" TextWrapping="Wrap" Width="300" Foreground="#FF00644C" Text="{Binding Description}"/>
         </StackPanel>
         <StackPanel Grid.Column="1">
-            <Label Content="Pervenche" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="#FF00644C"/>
-            <Label Content="9,95 €" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="#FF00644C" FontSize="14"/>
+            <Label x:Name="labNomArticle" Content="Pervenche" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="#FF00644C"/>
+            <Label x:Name="labPrixArticle" Content="9,95 €" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="#FF00644C" FontSize="14"/>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Quantité" Width="100" Foreground="#FF00644C" Margin="50,0,0,0"/>
                 <Slider Width="120" Foreground="#FF00644C" VerticalAlignment="Center"/>
-                <Label Content="1 - 100" Width="100" Foreground="#FF00644C"/>
+                <Label x:Name="labQuantite" Content="1 - 100" Width="100" Foreground="#FF00644C"/>
             </StackPanel>
             <Button x:Name="butAjouterQuantite" Content="Ajouter" Width="100" Margin="0,20,0,0" Foreground="White" BorderBrush="#FF004C29" Background="#FF00644C" BorderThickness="2,2,2,2" Height="25" IsDefault="True" Click="butAjouterQuantite_Click"/>
             <Label Content="Caractéristiques" Margin="0,30,0,0" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold" Foreground="#FF00644C"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label Content="Taille conteneur" Width="125" Foreground="#FF00644C"/>
-                <Label Content="Pot 3L" Foreground="#FF00644C" Width="100"/>
+                <Label Content="Taille conteneur" Width="125" Foreground="#FF00644C" Target="{Binding ElementName=tbTailleConteneur, Mode=OneWay}"/>
+                <TextBlock x:Name="tbTailleConteneur" TextWrapping="Wrap" Foreground="#FF00644C" Width="100" VerticalAlignment="Center" Text="{Binding TailleContenur}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label Content="Exposition" Width="125" Foreground="#FF00644C"/>
-                <Label Content="Partiellement" Foreground="#FF00644C" Width="100"/>
+                <Label Content="Exposition" Width="125" Foreground="#FF00644C" Target="{Binding ElementName=tbExposition, Mode=OneWay}"/>
+                <TextBlock x:Name="tbExposition" TextWrapping="Wrap" Foreground="#FF00644C" Width="100" VerticalAlignment="Center" Text="{Binding Exposition}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label Content="Floraison" Width="125" Foreground="#FF00644C"/>
-                <Label Content="Toute l'année" Foreground="#FF00644C" Width="100"/>
+                <Label Content="Floraison" Width="125" Foreground="#FF00644C" Target="{Binding ElementName=labFloraison, Mode=OneWay}"/>
+                <TextBlock x:Name="tbFloraison" TextWrapping="Wrap" Foreground="#FF00644C" Width="100" VerticalAlignment="Center" Text="{Binding Floraison}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label Content="Taille adulte" Width="125" Foreground="#FF00644C"/>
-                <Label Content="0,2m" Foreground="#FF00644C" Width="100"/>
+                <Label Content="Taille adulte" Width="125" Foreground="#FF00644C" Target="{Binding ElementName=labTailleAdulte, Mode=OneWay}"/>
+                <TextBlock x:Name="tbTailleAdulte" TextWrapping="Wrap" Foreground="#FF00644C" Width="100" VerticalAlignment="Center" Text="{Binding TailleAdulte}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
