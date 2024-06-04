@@ -79,7 +79,7 @@ namespace MaquetteBotanic
             {
                 lesTransports = value;
             }
-        }       
+        }        
 
         public ApplicationData()
         {

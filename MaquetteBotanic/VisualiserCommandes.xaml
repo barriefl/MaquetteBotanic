@@ -1,34 +1,123 @@
-﻿<Window x:Class="MaquetteBotanic.VisualiserCommandes"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MaquetteBotanic"
-        mc:Ignorable="d"
-        Title="Visualiser les commandes" Height="550" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+﻿<Window
+    x:Class="MaquetteBotanic.VisualiserCommandes"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MaquetteBotanic"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Visualiser les commandes"
+    Width="800"
+    Height="550"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
     <Grid Background="#FFFAFFFA">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="tbRechercheCommande" TextWrapping="Wrap" Text="Rechercher" Width="200" Margin="0,20,0,10" HorizontalAlignment="Left" BorderBrush="#FF003D2E" Foreground="#FF00644C" BorderThickness="2,2,2,2" Height="25" FontSize="14"/>
-                <Image Height="66" Source="/img/LogoBotanic.png" Stretch="Fill" Width="207" Margin="200,0,0,0"/>
+                <TextBox
+                    x:Name="tbRechercheCommande"
+                    Width="200"
+                    Height="25"
+                    Margin="0,20,0,10"
+                    HorizontalAlignment="Left"
+                    BorderBrush="#FF003D2E"
+                    BorderThickness="2,2,2,2"
+                    FontSize="14"
+                    Foreground="#FF00644C"
+                    Text="Rechercher"
+                    TextWrapping="Wrap" />
+                <Image
+                    Width="207"
+                    Height="66"
+                    Margin="200,0,0,0"
+                    Source="/img/LogoBotanic.png"
+                    Stretch="Fill" />
             </StackPanel>
-            <Label Content="Liste des commandes" Margin="0,10,0,0" FontWeight="Bold" Foreground="#FF00644C"/>
-            <DataGrid x:Name="dgListeCommande" Height="100" Width="350" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Left" Margin="0,10,0,0" BorderBrush="#FF003D29" Foreground="#FF00644C" BorderThickness="2,2,2,2" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
-            <Rectangle Height="4" Stroke="#FF00644C" Margin="0,15,0,15" StrokeThickness="2"/>
-            <Label Content="Détails de la commande sélectionnée" FontWeight="Bold" Foreground="#FF00644C"/>
-            <Label Content="Commande n°02837" Width="120" Margin="0,5,0,0" Foreground="#FF00644C" HorizontalAlignment="Left"/>
+            <Label
+                Margin="0,10,0,0"
+                Content="Liste des commandes"
+                FontWeight="Bold"
+                Foreground="#FF00644C" />
+            <DataGrid
+                x:Name="dgListeCommande"
+                Width="350"
+                Height="100"
+                Margin="0,10,0,0"
+                HorizontalAlignment="Left"
+                d:ItemsSource="{d:SampleData ItemCount=5}"
+                BorderBrush="#FF003D29"
+                BorderThickness="2,2,2,2"
+                Foreground="#FF00644C"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+            <Rectangle
+                Height="4"
+                Margin="0,15,0,15"
+                Stroke="#FF00644C"
+                StrokeThickness="2" />
+            <Label
+                Content="Détails de la commande sélectionnée"
+                FontWeight="Bold"
+                Foreground="#FF00644C" />
+            <Label
+                Width="120"
+                Margin="0,5,0,0"
+                HorizontalAlignment="Left"
+                Content="Commande n°02837"
+                Foreground="#FF00644C" />
             <StackPanel Orientation="Horizontal">
-                <DataGrid x:Name="dgDetailCommande" Height="100" Width="350" d:ItemsSource="{d:SampleData ItemCount=5}" BorderBrush="#FF003D29" Foreground="#FF00644C" BorderThickness="2,2,2,2" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                <DataGrid
+                    x:Name="dgDetailCommande"
+                    Width="350"
+                    Height="100"
+                    d:ItemsSource="{d:SampleData ItemCount=5}"
+                    BorderBrush="#FF003D29"
+                    BorderThickness="2,2,2,2"
+                    Foreground="#FF00644C"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Mode de transport" Width="120" Margin="0,5,0,0" Foreground="#FF00644C" HorizontalAlignment="Left"/>
-                <Label Content="Hélicoptère" Width="200" Margin="15,5,0,0" Foreground="#FF00644C" HorizontalAlignment="Left"/>
+                <Label
+                    Width="120"
+                    Margin="0,5,0,0"
+                    HorizontalAlignment="Left"
+                    Content="Mode de transport"
+                    Foreground="#FF00644C" />
+                <Label
+                    Width="200"
+                    Margin="15,5,0,0"
+                    HorizontalAlignment="Left"
+                    Content="Hélicoptère"
+                    Foreground="#FF00644C" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label x:Name="labDateLivraison" Content="Date de livraison" Width="120" Foreground="#FF00644C" HorizontalAlignment="Left" Target="{Binding ElementName=tbDateLivraison, Mode=OneWay}"/>
-                <DatePicker x:Name="dpDateLivraison" Margin="15,0,0,0" Text="{Binding DateLivraison}" BorderBrush="#FF003D2E" Foreground="#FF00644C" FirstDayOfWeek="Monday" BorderThickness="2,2,2,2"/>
+                <Label
+                    x:Name="labDateLivraison"
+                    Width="120"
+                    HorizontalAlignment="Left"
+                    Content="Date de livraison"
+                    Foreground="#FF00644C"
+                    Target="{Binding ElementName=tbDateLivraison, Mode=OneWay}" />
+                <DatePicker
+                    x:Name="dpDateLivraison"
+                    Margin="15,0,0,0"
+                    BorderBrush="#FF003D2E"
+                    BorderThickness="2,2,2,2"
+                    FirstDayOfWeek="Monday"
+                    Foreground="#FF00644C"
+                    Text="{Binding DateLivraison}" />
             </StackPanel>
-            <Button x:Name="butRetourMenu" Content="Retour au menu" Width="125" Margin="0,20,0,0" Foreground="White" BorderBrush="#FF004C29" Background="#FF00644C" BorderThickness="2,2,2,2" Height="30" Click="butRetourMenu_Click" IsCancel="True"/>
+            <Button
+                x:Name="butRetourMenu"
+                Width="125"
+                Height="30"
+                Margin="0,20,0,0"
+                Background="#FF00644C"
+                BorderBrush="#FF004C29"
+                BorderThickness="2,2,2,2"
+                Click="butRetourMenu_Click"
+                Content="Retour au menu"
+                Foreground="White"
+                IsCancel="True" />
         </StackPanel>
     </Grid>
 </Window>

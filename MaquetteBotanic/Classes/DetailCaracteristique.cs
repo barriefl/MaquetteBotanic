@@ -8,33 +8,33 @@ namespace MaquetteBotanic
 {
     public class DetailCaracteristique
     {
-        private Produit produit;
-        private Caracteristique caracteristique;
+        private int numProduit;
+        private int numCaracteristique;
         private string valeur;
 
-        public Produit Produit
+        public int NumProduit
         {
             get
             {
-                return produit;
+                return numProduit;
             }
 
             set
             {
-                produit = value;
+                numProduit = value;
             }
         }
 
-        public Caracteristique Caracteristique
+        public int NumCaracteristique
         {
             get
             {
-                return caracteristique;
+                return numCaracteristique;
             }
 
             set
             {
-                caracteristique = value;
+                numCaracteristique = value;
             }
         }
 
@@ -49,6 +49,18 @@ namespace MaquetteBotanic
             {
                 this.valeur = value;
             }
+        }
+
+        public DetailCaracteristique()
+        {
+
+        }
+
+        public DetailCaracteristique(int numProduit, int numCaracteristique, string caracteristique)
+        {
+            this.NumProduit = numProduit;
+            this.NumCaracteristique = numCaracteristique;
+            this.Valeur = caracteristique;
         }
     }
 }

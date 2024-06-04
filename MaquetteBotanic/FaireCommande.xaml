@@ -1,62 +1,239 @@
-﻿<Window x:Class="MaquetteBotanic.FaireCommande"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MaquetteBotanic"
-        mc:Ignorable="d"
-        Title="Faire une commande" Height="650" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+﻿<Window
+    x:Class="MaquetteBotanic.FaireCommande"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MaquetteBotanic"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Faire une commande"
+    Width="800"
+    Height="650"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
 
     <Window.DataContext>
-        <local:ApplicationData x:Name="data"/>
+        <local:ApplicationData x:Name="data" />
     </Window.DataContext>
 
     <Grid Background="#FFFAFFFA">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
-                <RadioButton x:Name="rbCentrale" Content="Centrale d'achats Botanic" BorderBrush="#FF004C2E" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
-                <RadioButton x:Name="rbLocal" Content="Achats fournisseurs locaux" Margin="20,0,0,0" BorderBrush="#FF004C2E" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
+                <RadioButton
+                    x:Name="rbCentrale"
+                    BorderBrush="#FF004C2E"
+                    BorderThickness="2,2,2,2"
+                    Content="Centrale d'achats Botanic"
+                    Foreground="#FF00644C" />
+                <RadioButton
+                    x:Name="rbLocal"
+                    Margin="20,0,0,0"
+                    BorderBrush="#FF004C2E"
+                    BorderThickness="2,2,2,2"
+                    Content="Achats fournisseurs locaux"
+                    Foreground="#FF00644C" />
             </StackPanel>
-            <TextBox x:Name="tbRechercheProduit" TextWrapping="Wrap" Width="175" Margin="0,20,0,10" HorizontalAlignment="Left" BorderBrush="#FF003D2E" Foreground="#FF00644C" BorderThickness="2,2,2,2" TextChanged="tbRechercheProduit_TextChanged"/>
+            <TextBox
+                x:Name="tbRechercheProduit"
+                Width="175"
+                Margin="0,20,0,10"
+                HorizontalAlignment="Left"
+                BorderBrush="#FF003D2E"
+                BorderThickness="2,2,2,2"
+                Foreground="#FF00644C"
+                TextChanged="tbRechercheProduit_TextChanged"
+                TextWrapping="Wrap" />
             <StackPanel Orientation="Horizontal">
-                <Label Content="Type" Width="150" Foreground="#FF00644C" Target="{Binding ElementName=cbType, Mode=OneWay}"/>
-                <Label Content="Catégorie" Margin="50,0,0,0" Width="150" Foreground="#FF00644C" Target="{Binding ElementName=cbCategorie, Mode=OneWay}"/>
-                <Label Content="Couleur" Margin="50,0,0,0" Foreground="#FF00644C" Target="{Binding ElementName=cbCouleur, Mode=OneWay}"/>
+                <Label
+                    Width="150"
+                    Content="Type"
+                    Foreground="#FF00644C"
+                    Target="{Binding ElementName=cbType, Mode=OneWay}" />
+                <Label
+                    Width="150"
+                    Margin="50,0,0,0"
+                    Content="Catégorie"
+                    Foreground="#FF00644C"
+                    Target="{Binding ElementName=cbCategorie, Mode=OneWay}" />
+                <Label
+                    Margin="50,0,0,0"
+                    Content="Couleur"
+                    Foreground="#FF00644C"
+                    Target="{Binding ElementName=cbCouleur, Mode=OneWay}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <ComboBox x:Name="cbType" Width="150" Foreground="#FF00644C" ItemsSource="{Binding LesTypes}"/>
-                <ComboBox x:Name="cbCategorie" Width="150" Margin="50,0,0,0" Foreground="#FF00644C" ItemsSource="{Binding LesCategories}"/>
-                <ComboBox x:Name="cbCouleur" Width="120" Margin="50,0,0,0" Foreground="#FF00644C" ItemsSource="{Binding LesCouleurs}"/>
+                <ComboBox
+                    x:Name="cbType"
+                    Width="150"
+                    Foreground="#FF00644C"
+                    ItemsSource="{Binding LesTypes}" />
+                <ComboBox
+                    x:Name="cbCategorie"
+                    Width="150"
+                    Margin="50,0,0,0"
+                    Foreground="#FF00644C"
+                    ItemsSource="{Binding LesCategories}" />
+                <ComboBox
+                    x:Name="cbCouleur"
+                    Width="120"
+                    Margin="50,0,0,0"
+                    Foreground="#FF00644C"
+                    ItemsSource="{Binding LesCouleurs}" />
             </StackPanel>
-            <CheckBox x:Name="cbFournisseurLocal" Content="Fournisseur local" Margin="0,10,0,0" BorderBrush="#FF003D2E" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
-            <Label Content="Liste des produits" Margin="0,20,0,0" FontWeight="Bold" Foreground="#FF00644C"/>
+            <CheckBox
+                x:Name="cbFournisseurLocal"
+                Margin="0,10,0,0"
+                BorderBrush="#FF003D2E"
+                BorderThickness="2,2,2,2"
+                Content="Fournisseur local"
+                Foreground="#FF00644C" />
+            <Label
+                Margin="0,20,0,0"
+                Content="Liste des produits"
+                FontWeight="Bold"
+                Foreground="#FF00644C" />
             <StackPanel Orientation="Horizontal">
-                <DataGrid x:Name="dgListeProduit" Height="100" Width="350" ItemsSource="{Binding LesProduits}" BorderBrush="#FF003D29" Foreground="#FF00644C" BorderThickness="2,2,2,2" HorizontalScrollBarVisibility="Disabled" AutoGenerateColumns="False" FontWeight="Bold" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF00644C">
+                <DataGrid
+                    x:Name="dgListeProduit"
+                    Width="300"
+                    Height="100"
+                    AutoGenerateColumns="False"
+                    BorderBrush="#FF003D29"
+                    BorderThickness="2,2,2,2"
+                    FontWeight="Bold"
+                    Foreground="#FF00644C"
+                    GridLinesVisibility="Horizontal"
+                    HorizontalGridLinesBrush="#FF00644C"
+                    HorizontalScrollBarVisibility="Disabled"
+                    ItemsSource="{Binding LesProduits}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="150" Binding="{Binding Nom}" Header="Nom" FontWeight="Normal"/>
-                        <DataGridTextColumn Width="80" Binding="{Binding PrixVente}" Header="Prix Vente" FontWeight="Normal"/>
+                        <DataGridTextColumn
+                            Width="200"
+                            Binding="{Binding Nom}"
+                            FontWeight="Normal"
+                            Header="Nom" />
+                        <DataGridTextColumn
+                            Width="100"
+                            Binding="{Binding PrixVente}"
+                            FontWeight="Normal"
+                            Header="Prix Vente" />
                     </DataGrid.Columns>
                 </DataGrid>
-                <Image Height="66" Source="/img/LogoBotanic.png" Stretch="Fill" Width="207" Margin="155,0,0,0"/>
+                <Button
+                    x:Name="butAjouter"
+                    Width="25"
+                    Height="25"
+                    Margin="50,5,0,0"
+                    BorderBrush="#FF003D29"
+                    BorderThickness="0,0,0,0"
+                    Click="butAjouter_Click" Background="Black"/>
+                <Image
+                    Width="207"
+                    Height="66"
+                    Margin="100,0,0,0"
+                    Source="/img/LogoBotanic.png"
+                    Stretch="Fill" />
             </StackPanel>
-            <Label Content="Détails de la commande" Margin="0,15,0,5" FontWeight="Bold" Foreground="#FF00644C"/>
+            <Label
+                Margin="0,15,0,5"
+                Content="Détails de la commande"
+                FontWeight="Bold"
+                Foreground="#FF00644C" />
             <StackPanel Orientation="Horizontal">
-                <Label Content="Date de création" Width="120" Margin="0,0,0,5" Foreground="#FF00644C" Target="{Binding ElementName=dpCreationCommande, Mode=OneWay}"/>
-                <DatePicker x:Name="dpCreationCommande" Margin="15,0,0,5" FirstDayOfWeek="Monday" BorderBrush="#FF003D2E" Foreground="#FF00644C" BorderThickness="2,2,2,2" ScrollViewer.VerticalScrollBarVisibility="Disabled" Text="{Binding DateCreationCommande}"/>
+                <Label
+                    Width="120"
+                    Margin="0,0,0,5"
+                    Content="Date de création"
+                    Foreground="#FF00644C"
+                    Target="{Binding ElementName=dpCreationCommande, Mode=OneWay}" />
+                <DatePicker
+                    x:Name="dpCreationCommande"
+                    Margin="15,0,0,5"
+                    BorderBrush="#FF003D2E"
+                    BorderThickness="2,2,2,2"
+                    FirstDayOfWeek="Monday"
+                    Foreground="#FF00644C"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                    Text="{Binding DateCreationCommande}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Mode de transport" Width="120" Foreground="#FF00644C"/>
-                <ComboBox x:Name="cbModeTransport" Width="150" Margin="15,0,0,0" Foreground="#FF00644C" ItemsSource="{Binding LesTransports}"/>
+                <Label
+                    Width="120"
+                    Content="Mode de transport"
+                    Foreground="#FF00644C" />
+                <ComboBox
+                    x:Name="cbModeTransport"
+                    Width="150"
+                    Margin="15,0,0,0"
+                    Foreground="#FF00644C"
+                    ItemsSource="{Binding LesTransports}" />
             </StackPanel>
-            <Label Content="Produits commandés" Margin="0,15,0,5" FontWeight="Bold" Foreground="#FF00644C"/>
+            <Label
+                Margin="0,15,0,5"
+                Content="Produits commandés"
+                FontWeight="Bold"
+                Foreground="#FF00644C" />
             <StackPanel Orientation="Horizontal">
-                <DataGrid x:Name="dgProduitCommande" Height="100" Width="350" d:ItemsSource="{d:SampleData ItemCount=5}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="#FF003D29" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
-                <Label x:Name="labMontantTotal" Content="Montant total : 255 €" Margin="115,15,0,0" FontWeight="Bold" FontSize="14" Foreground="#FF00644C" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Center"/>
+                <DataGrid
+                    x:Name="dgProduitCommande"
+                    Width="350"
+                    Height="100"
+                    d:ItemsSource="{d:SampleData ItemCount=5}"
+                    BorderBrush="#FF003D29"
+                    BorderThickness="2,2,2,2"
+                    Foreground="#FF00644C"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+                <Label
+                    x:Name="labMontantTotal"
+                    Margin="115,15,0,0"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    Content="Montant total : 255 €"
+                    FontSize="14"
+                    FontWeight="Bold"
+                    Foreground="#FF00644C" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                <Button x:Name="butValider" Content="Valider" Height="25" Width="100" Margin="0,5,0,0" IsDefault="True" Background="#FF00644C" BorderBrush="#FF003D29" Foreground="White" BorderThickness="2,2,2,2" Click="butValider_Click"/>
-                <Button x:Name="butAnnuler" Content="Annuler" Height="25" Width="100" Margin="35,5,0,0" IsCancel="True" Foreground="White" Background="#FF00644C" BorderBrush="#FF003D29" BorderThickness="2,2,2,2" Click="butAnnuler_Click"/>
-                <Button x:Name="butDebug" Content="Debug" Height="25" Width="100" Margin="35,5,0,0" IsCancel="True" Foreground="White" Background="#FF00644C" BorderBrush="#FF003D29" BorderThickness="2,2,2,2" Click="butDebug_Click"/>
+            <StackPanel
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+                <Button
+                    x:Name="butValider"
+                    Width="100"
+                    Height="25"
+                    Margin="0,5,0,0"
+                    Background="#FF00644C"
+                    BorderBrush="#FF003D29"
+                    BorderThickness="2,2,2,2"
+                    Click="butValider_Click"
+                    Content="Valider"
+                    Foreground="White"
+                    IsDefault="True" />
+                <Button
+                    x:Name="butAnnuler"
+                    Width="100"
+                    Height="25"
+                    Margin="35,5,0,0"
+                    Background="#FF00644C"
+                    BorderBrush="#FF003D29"
+                    BorderThickness="2,2,2,2"
+                    Click="butAnnuler_Click"
+                    Content="Annuler"
+                    Foreground="White"
+                    IsCancel="True" />
+                <Button
+                    x:Name="butDebug"
+                    Width="100"
+                    Height="25"
+                    Margin="35,5,0,0"
+                    Background="#FF00644C"
+                    BorderBrush="#FF003D29"
+                    BorderThickness="2,2,2,2"
+                    Click="butDebug_Click"
+                    Content="Debug"
+                    Foreground="White"
+                    IsCancel="True" />
             </StackPanel>
         </StackPanel>
     </Grid>

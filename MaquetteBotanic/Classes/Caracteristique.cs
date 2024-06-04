@@ -36,5 +36,20 @@ namespace MaquetteBotanic
                 this.nom = value;
             }
         }
+
+        public Caracteristique()
+        {
+
+        }
+
+        public Caracteristique(int num)
+        {
+            this.Num = num;
+        }
+
+        public Caracteristique(int num, string nom) : this(num)
+        {
+            this.Nom = nom;
+        }
     }
 }
