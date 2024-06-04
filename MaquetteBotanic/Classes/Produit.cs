@@ -10,8 +10,6 @@ namespace MaquetteBotanic
 {
     public class Produit
     {
-        private static ObservableCollection<Produit> lesProduits;
-
         private int num;
         private Couleur couleur;
         private Fournisseur fournisseur;
@@ -139,22 +137,9 @@ namespace MaquetteBotanic
             }
         }
 
-        public static ObservableCollection<Produit> LesProduits
-        {
-            get
-            {
-                return lesProduits;
-            }
-
-            set
-            {
-                lesProduits = value;
-            }
-        }
-
         public Produit()
         {
-            Read();
+
         }
 
         public Produit(int numProduit, string nomCouleur, int numFournisseur, int numCategorie, string nomProduit, string taille, string description, double prixVente, double prixAchat)
@@ -172,20 +157,20 @@ namespace MaquetteBotanic
 
         public static ObservableCollection<Produit> Read()
         {
-            LesProduits = new ObservableCollection<Produit>();
+            ObservableCollection<Produit> lesProduits = new ObservableCollection<Produit>();
             String sql = "SELECT num_produit, nom_couleur, num_fournisseur, num_categorie," +
                          "nom_produit, taille_produit, description_produit, prix_vente, prix_achat FROM produit";
             DataTable dt = DataAccess.Instance.GetData(sql);
             foreach (DataRow res in dt.Rows)
             {
-                Produit nouveau = new Produit(int.Parse(res["num_produit"].ToString()), 
+                Produit produit = new Produit(int.Parse(res["num_produit"].ToString()),
                 res["nom_couleur"].ToString(), int.Parse(res["num_fournisseur"].ToString()),
                 int.Parse(res["num_categorie"].ToString()), res["nom_produit"].ToString(),
                 res["taille_produit"].ToString(), res["description_produit"].ToString(),
                 double.Parse(res["prix_vente"].ToString()), double.Parse(res["prix_achat"].ToString()));
-                LesProduits.Add(nouveau);
+                lesProduits.Add(produit);
             }
-            return LesProduits;
+            return lesProduits;
         }
     }
 }

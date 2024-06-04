@@ -23,6 +23,8 @@ namespace MaquetteBotanic
         {
             InitializeComponent();
 
+            dgListeProduit.Items.Filter = ContientMotClef;
+
             // DatePicker (date de la commande) automatique sur la date d'aujourd'hui.
             dpCreationCommande.SelectedDate = DateTime.Today;
             dpCreationCommande.IsEnabled = false;
@@ -46,6 +48,20 @@ namespace MaquetteBotanic
         {
             VoirArticle article = new VoirArticle();
             article.ShowDialog();
+        }
+
+        private bool ContientMotClef(object obj)
+        {
+            Produit unProduit = obj as Produit;
+            if (String.IsNullOrEmpty(tbRechercheProduit.Text))
+                return true;
+            else
+                return (unProduit.Nom.StartsWith(tbRechercheProduit.Text, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private void tbRechercheProduit_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgListeProduit.ItemsSource).Refresh();
         }
     }
 }

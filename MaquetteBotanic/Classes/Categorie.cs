@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +11,7 @@ namespace MaquetteBotanic
     public class Categorie
     {
         private int num;
-        private Type type;
+        private TypeProduit type;
         private string libelle;
 
         public int Num
@@ -25,7 +27,7 @@ namespace MaquetteBotanic
             }
         }
 
-        public Type Type
+        public TypeProduit Type
         {
             get
             {
@@ -59,6 +61,31 @@ namespace MaquetteBotanic
         public Categorie(int num)
         {
             this.Num = num;
+        }
+
+        public Categorie(int num, int numType, string libelle) : this(num)
+        {
+            this.Type = new TypeProduit(num);
+            this.Libelle = libelle;
+        }
+
+        public override string ToString()
+        {
+            return Libelle;
+        }
+
+        public static ObservableCollection<Categorie> Read()
+        {
+            ObservableCollection<Categorie> lesCategories = new ObservableCollection<Categorie>();
+            String sql = "SELECT num_categorie, num_type, libelle_categorie FROM categorie";
+            DataTable dt = DataAccess.Instance.GetData(sql);
+            foreach (DataRow res in dt.Rows)
+            {
+                Categorie categorie = new Categorie(int.Parse(res["num_categorie"].ToString()),
+                int.Parse(res["num_type"].ToString()), res["libelle_categorie"].ToString());
+                lesCategories.Add(categorie);
+            }
+            return lesCategories;
         }
     }
 }

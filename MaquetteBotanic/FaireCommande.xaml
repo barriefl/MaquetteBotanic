@@ -8,7 +8,7 @@
         Title="Faire une commande" Height="650" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
     <Window.DataContext>
-        <local:Produit x:Name="produit"/>
+        <local:ApplicationData x:Name="data"/>
     </Window.DataContext>
 
     <Grid Background="#FFFAFFFA">
@@ -17,21 +17,21 @@
                 <RadioButton x:Name="rbCentrale" Content="Centrale d'achats Botanic" BorderBrush="#FF004C2E" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
                 <RadioButton x:Name="rbLocal" Content="Achats fournisseurs locaux" Margin="20,0,0,0" BorderBrush="#FF004C2E" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
             </StackPanel>
-            <TextBox x:Name="tbRechercheProduit" TextWrapping="Wrap" Text="Rechercher" Width="175" Margin="0,20,0,10" HorizontalAlignment="Left" BorderBrush="#FF003D2E" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
+            <TextBox x:Name="tbRechercheProduit" TextWrapping="Wrap" Width="175" Margin="0,20,0,10" HorizontalAlignment="Left" BorderBrush="#FF003D2E" Foreground="#FF00644C" BorderThickness="2,2,2,2" TextChanged="tbRechercheProduit_TextChanged"/>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Type" Width="150" Foreground="#FF00644C" Target="{Binding ElementName=cbType, Mode=OneWay}"/>
                 <Label Content="Catégorie" Margin="50,0,0,0" Width="150" Foreground="#FF00644C" Target="{Binding ElementName=cbCategorie, Mode=OneWay}"/>
                 <Label Content="Couleur" Margin="50,0,0,0" Foreground="#FF00644C" Target="{Binding ElementName=cbCouleur, Mode=OneWay}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <ComboBox x:Name="cbType" Width="150" Foreground="#FF00644C" Text="{Binding Type}"/>
-                <ComboBox x:Name="cbCategorie" Width="150" Margin="50,0,0,0" Foreground="#FF00644C" Text="{Binding Categorie}"/>
-                <ComboBox x:Name="cbCouleur" Width="120" Margin="50,0,0,0" Foreground="#FF00644C" Text="{Binding Couleur}"/>
+                <ComboBox x:Name="cbType" Width="150" Foreground="#FF00644C" ItemsSource="{Binding LesTypes}"/>
+                <ComboBox x:Name="cbCategorie" Width="150" Margin="50,0,0,0" Foreground="#FF00644C" ItemsSource="{Binding LesCategories}"/>
+                <ComboBox x:Name="cbCouleur" Width="120" Margin="50,0,0,0" Foreground="#FF00644C" ItemsSource="{Binding LesCouleurs}"/>
             </StackPanel>
             <CheckBox x:Name="cbFournisseurLocal" Content="Fournisseur local" Margin="0,10,0,0" BorderBrush="#FF003D2E" Foreground="#FF00644C" BorderThickness="2,2,2,2"/>
             <Label Content="Liste des produits" Margin="0,20,0,0" FontWeight="Bold" Foreground="#FF00644C"/>
             <StackPanel Orientation="Horizontal">
-                <DataGrid x:Name="dgListeProduit" Height="100" Width="350" ItemsSource="{Binding LesProduits}" BorderBrush="#FF003D29" Foreground="#FF00644C" BorderThickness="2,2,2,2" HorizontalScrollBarVisibility="Disabled" AutoGenerateColumns="False" FontWeight="Bold">
+                <DataGrid x:Name="dgListeProduit" Height="100" Width="350" ItemsSource="{Binding LesProduits}" BorderBrush="#FF003D29" Foreground="#FF00644C" BorderThickness="2,2,2,2" HorizontalScrollBarVisibility="Disabled" AutoGenerateColumns="False" FontWeight="Bold" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF00644C">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="150" Binding="{Binding Nom}" Header="Nom" FontWeight="Normal"/>
                         <DataGridTextColumn Width="80" Binding="{Binding PrixVente}" Header="Prix Vente" FontWeight="Normal"/>
@@ -45,13 +45,8 @@
                 <DatePicker x:Name="dpCreationCommande" Margin="15,0,0,5" FirstDayOfWeek="Monday" BorderBrush="#FF003D2E" Foreground="#FF00644C" BorderThickness="2,2,2,2" ScrollViewer.VerticalScrollBarVisibility="Disabled" Text="{Binding DateCreationCommande}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Mode de transport" Width="120" Foreground="#FF00644C" Target="{Binding ElementName=cbModeTransport, Mode=OneWay}"/>
-                <ComboBox x:Name="cbModeTransport" Width="150" Margin="15,0,0,0" Foreground="#FF00644C" Text="{Binding ModeTransport}">
-                    <ComboBoxItem Content="UPS" Foreground="#FF00644C"/>
-                    <ComboBoxItem Content="Chronopost" Foreground="#FF00644C"/>
-                    <ComboBoxItem Content="Botanic" Foreground="#FF00644C"/>
-                    <ComboBoxItem Content="Relais" Foreground="#FF00644C"/>
-                </ComboBox>
+                <Label Content="Mode de transport" Width="120" Foreground="#FF00644C"/>
+                <ComboBox x:Name="cbModeTransport" Width="150" Margin="15,0,0,0" Foreground="#FF00644C" ItemsSource="{Binding LesTransports}"/>
             </StackPanel>
             <Label Content="Produits commandés" Margin="0,15,0,5" FontWeight="Bold" Foreground="#FF00644C"/>
             <StackPanel Orientation="Horizontal">
