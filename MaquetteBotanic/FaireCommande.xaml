@@ -158,7 +158,7 @@
                     FirstDayOfWeek="Monday"
                     Foreground="#FF00644C"
                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                    Text="{Binding DateCreationCommande}" />
+                    Text="{Binding DateCommande}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label
@@ -170,7 +170,8 @@
                     Width="150"
                     Margin="15,0,0,0"
                     Foreground="#FF00644C"
-                    ItemsSource="{Binding LesTransports}" />
+                    ItemsSource="{Binding LesTransports}"
+                    Text="{Binding ModeLivraison}"/>
             </StackPanel>
             <Label
                 Margin="0,15,0,5"

@@ -35,6 +35,11 @@ namespace MaquetteBotanic
 
         private void butValider_Click(object sender, RoutedEventArgs e)
         {
+            /*
+            CommandeAchat nouvelleCommande = new CommandeAchat();
+            VisualiserCommandes voirCommandes = new VisualiserCommandes(); // A voir après la refonte de la structure.
+            voirCommandes.DataContext = nouvelleCommande;
+            */
             Menu menu = new Menu();
             this.Close();
             menu.Show();
