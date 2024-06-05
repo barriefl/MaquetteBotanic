@@ -21,6 +21,7 @@ namespace MaquetteBotanic
     /// </summary>
     public partial class FaireCommande : Window
     {
+        bool modif = false;
         public FaireCommande()
         {
             InitializeComponent();
@@ -65,9 +66,27 @@ namespace MaquetteBotanic
             if (dgListeProduit.SelectedItem != null)
             {
                 Produit produitSelectionne = (Produit)dgListeProduit.SelectedItem;
-                VoirArticle article = new VoirArticle();
-                article.Panel.DataContext = (Produit)dgListeProduit.SelectedItem;
-                article.ShowDialog();
+                VoirArticle ajouteProduit = new VoirArticle();
+                ajouteProduit.DataContext = (Produit)dgListeProduit.SelectedItem;
+                ajouteProduit.ShowDialog();
+                if (ajouteProduit.DialogResult == true)
+                {
+                    produitSelectionne.CalculePrixTotal();
+                    ApplicationData.LesProduitsAjoutes.Add((Produit)ajouteProduit.DataContext);
+                    int index = ApplicationData.LesProduitsAjoutes.IndexOf(produitSelectionne);
+                    dgProduitCommande.SelectedIndex = index;
+                    modif = true;
+                }
+                if (modif)
+                {
+                    double montantTotal = 0;
+                    foreach (Produit produitAjoute in ApplicationData.LesProduitsAjoutes)
+                    {
+                        montantTotal += produitAjoute.PrixTotal;
+                    }
+                    labMontantTotal.Content = $"Montant total : {montantTotal} €";
+                    modif = false;
+                }
             }
             else
                 MessageBox.Show(this, "Veuillez sélectionner un produit.");

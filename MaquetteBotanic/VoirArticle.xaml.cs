@@ -26,6 +26,7 @@ namespace MaquetteBotanic
 
         private void butAjouterQuantite_Click(object sender, RoutedEventArgs e)
         {
+            DialogResult = true;
             this.Close();
         }
     }

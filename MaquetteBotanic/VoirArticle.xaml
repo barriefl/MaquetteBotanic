@@ -72,7 +72,7 @@
                     Maximum="100"
                     Minimum="1"
                     SmallChange="1"
-                    Value="1" />
+                    Value="{Binding QuantiteCommandee}" />
                 <TextBox
                     x:Name="tbQuantite"
                     Width="50"

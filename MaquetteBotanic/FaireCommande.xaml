@@ -126,7 +126,11 @@
                     Margin="50,5,0,0"
                     BorderBrush="#FF003D29"
                     BorderThickness="0,0,0,0"
-                    Click="butAjouter_Click" Background="Black"/>
+                    Click="butAjouter_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/img/Ajouter.png" />
+                    </Button.Background>
+                </Button>
                 <Image
                     Width="207"
                     Height="66"
@@ -178,18 +182,36 @@
                     x:Name="dgProduitCommande"
                     Width="350"
                     Height="100"
-                    d:ItemsSource="{d:SampleData ItemCount=5}"
                     BorderBrush="#FF003D29"
                     BorderThickness="2,2,2,2"
                     Foreground="#FF00644C"
-                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+                    ItemsSource="{Binding LesProduitsAjoutes}"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Width="175"
+                            Binding="{Binding Nom}"
+                            FontWeight="Normal"
+                            Header="Nom" />
+                        <DataGridTextColumn
+                            Width="75"
+                            Binding="{Binding QuantiteCommandee}"
+                            FontWeight="Normal"
+                            Header="Quantité" />
+                        <DataGridTextColumn
+                            Width="125"
+                            Binding="{Binding PrixTotal}"
+                            FontWeight="Normal"
+                            Header="Prix Total" />
+                    </DataGrid.Columns>
+                </DataGrid>
                 <Label
                     x:Name="labMontantTotal"
                     Margin="115,15,0,0"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Stretch"
                     VerticalContentAlignment="Stretch"
-                    Content="Montant total : 255 €"
+                    Content="Montant total : 00,00 €"
                     FontSize="14"
                     FontWeight="Bold"
                     Foreground="#FF00644C" />

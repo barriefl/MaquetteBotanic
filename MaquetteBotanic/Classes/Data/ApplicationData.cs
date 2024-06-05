@@ -15,6 +15,7 @@ namespace MaquetteBotanic
         private static ObservableCollection<Couleur> lesCouleurs;
         private static ObservableCollection<Produit> lesProduits;
         private static ObservableCollection<ModeTransport> lesTransports;
+        private static ObservableCollection<Produit> lesProduitsAjoutes = new ObservableCollection<Produit>();
 
         public static ObservableCollection<TypeProduit> LesTypes
         {
@@ -79,7 +80,20 @@ namespace MaquetteBotanic
             {
                 lesTransports = value;
             }
-        }        
+        }
+
+        public static ObservableCollection<Produit> LesProduitsAjoutes
+        {
+            get
+            {
+                return lesProduitsAjoutes;
+            }
+
+            set
+            {
+                lesProduitsAjoutes = value;
+            }
+        }
 
         public ApplicationData()
         {

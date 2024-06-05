@@ -19,8 +19,12 @@ namespace MaquetteBotanic
         private string description;
         private double prixVente;
         private double prixAchat;
+
         private List<DetailCaracteristique> valeurCaracteristiques;
         private List<Caracteristique> nomCaracteristiques;
+
+        private int quantiteCommandee;
+        private double prixTotal;
 
         public int Num
         {
@@ -165,6 +169,32 @@ namespace MaquetteBotanic
             }
         }
 
+        public int QuantiteCommandee
+        {
+            get
+            {
+                return quantiteCommandee;
+            }
+
+            set
+            {
+                quantiteCommandee = value;
+            }
+        }
+
+        public double PrixTotal
+        {
+            get
+            {
+                return this.prixTotal;
+            }
+
+            set
+            {
+                this.prixTotal = value;
+            }
+        }
+
         public Produit()
         {
             NomCaracteristiques = new List<Caracteristique>();
@@ -239,6 +269,11 @@ namespace MaquetteBotanic
                 produit.NomCaracteristiques.Add(nom);
             }
             return lesProduits;
-        }    
+        }
+
+        public double CalculePrixTotal()
+        {
+            return this.PrixTotal = this.QuantiteCommandee * this.PrixVente;
+        }
     }
 }
