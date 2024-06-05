@@ -42,14 +42,19 @@ namespace MaquetteBotanic
 
         }
 
-        public Caracteristique(int num)
+        public Caracteristique(string nom)
+        {
+            this.Nom = nom;
+        }
+
+        public Caracteristique(int num, string nom) : this(nom)
         {
             this.Num = num;
         }
 
-        public Caracteristique(int num, string nom) : this(num)
+        public override string ToString()
         {
-            this.Nom = nom;
+            return Nom;
         }
     }
 }

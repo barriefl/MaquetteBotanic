@@ -222,18 +222,6 @@
                     Content="Annuler"
                     Foreground="White"
                     IsCancel="True" />
-                <Button
-                    x:Name="butDebug"
-                    Width="100"
-                    Height="25"
-                    Margin="35,5,0,0"
-                    Background="#FF00644C"
-                    BorderBrush="#FF003D29"
-                    BorderThickness="2,2,2,2"
-                    Click="butDebug_Click"
-                    Content="Debug"
-                    Foreground="White"
-                    IsCancel="True" />
             </StackPanel>
         </StackPanel>
     </Grid>

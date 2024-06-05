@@ -19,7 +19,8 @@ namespace MaquetteBotanic
         private string description;
         private double prixVente;
         private double prixAchat;
-        private List<Caracteristique> caracteristiques;
+        private List<DetailCaracteristique> valeurCaracteristiques;
+        private List<Caracteristique> nomCaracteristiques;
 
         public int Num
         {
@@ -138,22 +139,36 @@ namespace MaquetteBotanic
             }
         }
 
-        public List<Caracteristique> Caracteristiques
+        public List<DetailCaracteristique> ValeurCaracteristiques
         {
             get
             {
-                return this.caracteristiques;
+                return valeurCaracteristiques;
             }
 
             set
             {
-                this.caracteristiques = value;
+                valeurCaracteristiques = value;
+            }
+        }
+
+        public List<Caracteristique> NomCaracteristiques
+        {
+            get
+            {
+                return this.nomCaracteristiques;
+            }
+
+            set
+            {
+                this.nomCaracteristiques = value;
             }
         }
 
         public Produit()
         {
-            Caracteristiques = new List<Caracteristique>();
+            NomCaracteristiques = new List<Caracteristique>();
+            ValeurCaracteristiques = new List<DetailCaracteristique>();
         }
 
         public Produit(int numProduit) : this()
@@ -176,45 +191,52 @@ namespace MaquetteBotanic
         public static ObservableCollection<Produit> Read()
         {
             ObservableCollection<Produit> lesProduits = new ObservableCollection<Produit>();
-            String sqlProduits = "SELECT num_produit, nom_couleur, num_fournisseur, num_categorie," +
-                         "nom_produit, taille_produit, description_produit, prix_vente, prix_achat FROM produit";
-            DataTable dtProduits = DataAccess.Instance.GetData(sqlProduits);
 
-            /*
-            string sqlCaracteristiques = $"SELECT num_produit, num_caracteristique, valeur_caracteristique FROM detail_caracteristique WHERE num_produit = {produitSelectionne.Num}";
-            DataTable dtCaracteristiques = DataAccess.Instance.GetData(sqlCaracteristiques);
-            */
-            foreach (DataRow res in dtProduits.Rows)
+            String sql = "SELECT pro.num_produit, nom_couleur, num_fournisseur, num_categorie, " +
+                         "nom_produit, taille_produit, description_produit, prix_vente, prix_achat, de.num_caracteristique, " +
+                         "car.nom_caracteristique, de.valeur_caracteristique " + 
+                         "FROM produit pro " +
+                         "JOIN detail_caracteristique de ON de.num_produit = pro.num_produit " +
+                         "JOIN caracteristique car ON car.num_caracteristique = de.num_caracteristique";
+
+            DataTable dt = DataAccess.Instance.GetData(sql);
+
+            foreach (DataRow res in dt.Rows)
             {
-                Produit produit = new Produit(int.Parse(res["num_produit"].ToString()),
-                res["nom_couleur"].ToString(), 
-                int.Parse(res["num_fournisseur"].ToString()),
-                int.Parse(res["num_categorie"].ToString()), 
-                res["nom_produit"].ToString(),
-                res["taille_produit"].ToString(), 
-                res["description_produit"].ToString(),
-                double.Parse(res["prix_vente"].ToString()), 
-                double.Parse(res["prix_achat"].ToString()));
+                int numProduit = int.Parse(res["num_produit"].ToString());
+                Produit produit = lesProduits.FirstOrDefault(p => p.Num == numProduit);
 
-                /*
-                List<Caracteristique> caracteristiques = new List<Caracteristique>(res["nom_produit"].ToString()),
-                res["nom_caracteristique"].ToString());
-                */
-
-                /*
-                var caracteristiques = dtCaracteristiques.AsEnumerable().Where(res => 
-                int.Parse(res["num_produit"].ToString()) == produit.Num).Select(res => 
-                new DetailCaracteristique(int.Parse(res["num_produit"].ToString()), 
-                int.Parse(res["num_caracteristique"].ToString()), res["valeur_caracteristique"].ToString()));
-                */
-
-                /*
-                foreach (var caracteristique in caracteristiques)
+                if (produit == null)
                 {
-                    produit.Caracteristiques.Add(caracteristique);
+                    produit = new Produit
+                    (
+                        int.Parse(res["num_produit"].ToString()),
+                        res["nom_couleur"].ToString(),
+                        int.Parse(res["num_fournisseur"].ToString()),
+                        int.Parse(res["num_categorie"].ToString()),
+                        res["nom_produit"].ToString(),
+                        res["taille_produit"].ToString(),
+                        res["description_produit"].ToString(),
+                        double.Parse(res["prix_vente"].ToString()),
+                        double.Parse(res["prix_achat"].ToString())
+                    );
+                    lesProduits.Add(produit);
                 }
-                */
-                lesProduits.Add(produit);
+
+                DetailCaracteristique valeur = new DetailCaracteristique
+                (
+                    int.Parse(res["num_produit"].ToString()),
+                    int.Parse(res["num_caracteristique"].ToString()),
+                    res["valeur_caracteristique"].ToString()
+                );
+                produit.ValeurCaracteristiques.Add(valeur);
+
+                Caracteristique nom = new Caracteristique
+                (
+                    int.Parse(res["num_caracteristique"].ToString()),
+                    res["nom_caracteristique"].ToString()
+                );
+                produit.NomCaracteristiques.Add(nom);
             }
             return lesProduits;
         }    

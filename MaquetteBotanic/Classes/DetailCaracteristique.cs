@@ -11,6 +11,7 @@ namespace MaquetteBotanic
         private int numProduit;
         private int numCaracteristique;
         private string valeur;
+        private Caracteristique nomCaracteristique;
 
         public int NumProduit
         {
@@ -51,6 +52,19 @@ namespace MaquetteBotanic
             }
         }
 
+        public Caracteristique NomCaracteristique
+        {
+            get
+            {
+                return this.nomCaracteristique;
+            }
+
+            set
+            {
+                this.nomCaracteristique = value;
+            }
+        }
+
         public DetailCaracteristique()
         {
 
@@ -61,6 +75,16 @@ namespace MaquetteBotanic
             this.NumProduit = numProduit;
             this.NumCaracteristique = numCaracteristique;
             this.Valeur = caracteristique;
+        }
+
+        public DetailCaracteristique(int numProduit, int numCaracteristique, string valeurCaracteristique, string nomCaracteristique) : this(numProduit, numCaracteristique, valeurCaracteristique)
+        {
+            this.NomCaracteristique = new Caracteristique(nomCaracteristique);
+        }
+
+        public override string ToString()
+        {
+            return this.Valeur;
         }
     }
 }

@@ -46,12 +46,6 @@ namespace MaquetteBotanic
             menu.Show();
         }
 
-        private void butDebug_Click(object sender, RoutedEventArgs e)
-        {
-            VoirArticle article = new VoirArticle();
-            article.ShowDialog();
-        }
-
         private bool ContientMotClef(object obj)
         {
             Produit unProduit = obj as Produit;
@@ -71,33 +65,12 @@ namespace MaquetteBotanic
             if (dgListeProduit.SelectedItem != null)
             {
                 Produit produitSelectionne = (Produit)dgListeProduit.SelectedItem;
-
-                // On récupère les caractéristiques du produit.
-
-                /*
-                string sqlCaracteristiques = $"SELECT num_produit, num_caracteristique, valeur_caracteristique FROM detail_caracteristique WHERE num_produit = {produitSelectionne.Num}";
-                DataTable dtCaracteristiques = DataAccess.Instance.GetData(sqlCaracteristiques);
-
-                var caracteristiques = dtCaracteristiques.AsEnumerable().Select(res => new DetailCaracteristique(int.Parse(res["num_produit"].ToString()), int.Parse(res["num_caracteristique"].ToString()), res["valeur_caracteristique"].ToString())).ToList();
-
-                produitSelectionne.Caracteristiques = new ObservableCollection<DetailCaracteristique>(caracteristiques);
-                
-                Article produit = new Article
-                {
-                    Produit = produitSelectionne
-                };
-
-                VoirArticle article = new VoirArticle
-                {
-                    DataContext = produit
-                };
-                */
                 VoirArticle article = new VoirArticle();
                 article.Panel.DataContext = (Produit)dgListeProduit.SelectedItem;
                 article.ShowDialog();
             }
             else
-                MessageBox.Show(this, "Veuillez selectionner un produit.");
+                MessageBox.Show(this, "Veuillez sélectionner un produit.");
         }
     }
 }
