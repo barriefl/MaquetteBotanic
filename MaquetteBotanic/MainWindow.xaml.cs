@@ -20,7 +20,8 @@ namespace MaquetteBotanic
     public partial class MainWindow : Window
     {
         private DataAccess connexion = new DataAccess();
-        bool modif = false;
+        bool ajouter = false;
+        bool supprimer = false;
         bool creerCommande = false;
 
         public MainWindow()
@@ -64,7 +65,21 @@ namespace MaquetteBotanic
 
         private void butValider_Click(object sender, RoutedEventArgs e)
         {
+            //FicheClient fiche = new FicheClient(Mode.Creation);
+            //fiche.DataContext = nouvelleCommande;
+            //fiche.ShowDialog();
 
+            ApplicationData.LesCommandes.Add((CommandeAchat)gCreerCommande.DataContext);
+
+
+            /*
+            if (fiche.DialogResult == true)
+            {
+                data.LesClients.Add(nouveauClient);
+                dgClients.SelectedItem = nouveauClient;
+                data.Create(nouveauClient);
+            }
+            */
         }
 
         private void butAjouter_Click(object sender, RoutedEventArgs e)
@@ -81,9 +96,9 @@ namespace MaquetteBotanic
                     ApplicationData.LesProduitsAjoutes.Add((Produit)ajouteProduit.DataContext);
                     int index = ApplicationData.LesProduitsAjoutes.IndexOf(produitSelectionne);
                     dgProduitCommande.SelectedIndex = index;
-                    modif = true;
+                    ajouter = true;
                 }
-                if (modif)
+                if (ajouter)
                 {
                     double montantTotal = 0;
                     foreach (Produit produitAjoute in ApplicationData.LesProduitsAjoutes)
@@ -91,11 +106,37 @@ namespace MaquetteBotanic
                         montantTotal += produitAjoute.PrixTotal;
                     }
                     labMontantTotal.Content = $"Montant total : {montantTotal} €";
-                    modif = false;
+                    ajouter = false;
                 }
             }
             else
                 MessageBox.Show(this, "Veuillez sélectionner un produit.");
+        }
+
+        private void butSupprimer_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgProduitCommande.SelectedItem != null)
+            {
+                Produit produitSelectionne = (Produit)dgProduitCommande.SelectedItem;
+                MessageBoxResult res = MessageBox.Show(this, $"Êtes vous sur de vouloir supprimer {produitSelectionne.Nom} ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (res == MessageBoxResult.Yes)
+                {
+                    ApplicationData.LesProduitsAjoutes.Remove(produitSelectionne);
+                    supprimer = true;
+                }
+                if (supprimer)
+                {
+                    double montantTotal = 0;
+                    foreach (Produit produitAjoute in ApplicationData.LesProduitsAjoutes)
+                    {
+                        montantTotal += produitAjoute.PrixTotal;
+                    }
+                    labMontantTotal.Content = $"Montant total : {montantTotal} €";
+                    supprimer = false;
+                }
+            }
+            else
+                MessageBox.Show(this, "Veuillez selectionner un client");
         }
     }
 }

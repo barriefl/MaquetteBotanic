@@ -93,5 +93,15 @@ namespace MaquetteBotanic
                 this.horaire = value;
             }
         }
+
+        public Magasin()
+        {
+
+        }
+
+        public Magasin(int num)
+        {
+            this.Num = num;
+        }
     }
 }

@@ -197,8 +197,8 @@ namespace MaquetteBotanic
 
         public Produit()
         {
-            NomCaracteristiques = new List<Caracteristique>();
-            ValeurCaracteristiques = new List<DetailCaracteristique>();
+            this.NomCaracteristiques = new List<Caracteristique>();
+            this.ValeurCaracteristiques = new List<DetailCaracteristique>();
         }
 
         public Produit(int numProduit) : this()

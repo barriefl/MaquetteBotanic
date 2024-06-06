@@ -16,6 +16,7 @@ namespace MaquetteBotanic
         private static ObservableCollection<Produit> lesProduits;
         private static ObservableCollection<ModeTransport> lesTransports;
         private static ObservableCollection<Produit> lesProduitsAjoutes = new ObservableCollection<Produit>();
+        private static ObservableCollection<CommandeAchat> lesCommandes;
 
         public static ObservableCollection<TypeProduit> LesTypes
         {
@@ -95,6 +96,19 @@ namespace MaquetteBotanic
             }
         }
 
+        public static ObservableCollection<CommandeAchat> LesCommandes
+        {
+            get
+            {
+                return lesCommandes;
+            }
+
+            set
+            {
+                lesCommandes = value;
+            }
+        }
+
         public ApplicationData()
         {
             LesTypes = TypeProduit.Read();
@@ -102,6 +116,7 @@ namespace MaquetteBotanic
             LesCouleurs = Couleur.Read();
             LesProduits = Produit.Read();
             LesTransports = ModeTransport.Read();
+            //LesCommandes = CommandeAchat.Read();
         }
     }
 }

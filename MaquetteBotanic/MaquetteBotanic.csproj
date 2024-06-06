@@ -12,6 +12,7 @@
     <None Remove="img\ImageLogo.png" />
     <None Remove="img\LogoBotanic.png" />
     <None Remove="img\Modifier.png" />
+    <None Remove="img\Supprimer.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +30,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\Modifier.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Supprimer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
