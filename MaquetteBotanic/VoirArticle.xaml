@@ -115,18 +115,26 @@
                     Text="{Binding Taille}"
                     TextWrapping="Wrap" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <ListView ItemsSource="{Binding NomCaracteristiques}" Foreground="#FF00644C" BorderBrush="{x:Null}" Width="125">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <ListView
+                    Width="125"
+                    BorderBrush="{x:Null}"
+                    Foreground="#FF00644C"
+                    ItemsSource="{Binding NomCaracteristiques}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn/>
+                            <GridViewColumn />
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <ListView ItemsSource="{Binding ValeurCaracteristiques}" Foreground="#FF00644C" BorderBrush="{x:Null}" Width="100">
+                <ListView
+                    Width="100"
+                    BorderBrush="{x:Null}"
+                    Foreground="#FF00644C"
+                    ItemsSource="{Binding ValeurCaracteristiques}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn/>
+                            <GridViewColumn />
                         </GridView>
                     </ListView.View>
                 </ListView>

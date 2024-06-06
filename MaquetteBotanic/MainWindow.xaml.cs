@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,39 +15,37 @@ using System.Windows.Shapes;
 namespace MaquetteBotanic
 {
     /// <summary>
-    /// Logique d'interaction pour FaireCommande.xaml
+    /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    public partial class FaireCommande : Window
+    public partial class MainWindow : Window
     {
+        private DataAccess connexion = new DataAccess();
         bool modif = false;
-        public FaireCommande()
+        bool creerCommande = false;
+
+        public MainWindow()
         {
             InitializeComponent();
-
-            dgListeProduit.Items.Filter = ContientMotClef;
-
-            // DatePicker (date de la commande) automatique sur la date d'aujourd'hui.
-            dpCreationCommande.SelectedDate = DateTime.Today;
-            dpCreationCommande.IsEnabled = false;
+            tcMenu.Visibility = Visibility.Hidden;
         }
 
-        private void butValider_Click(object sender, RoutedEventArgs e)
+        private void butConnexion_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            CommandeAchat nouvelleCommande = new CommandeAchat();
-            VisualiserCommandes voirCommandes = new VisualiserCommandes(); // A voir après la refonte de la structure.
-            voirCommandes.DataContext = nouvelleCommande;
-            */
-            Menu menu = new Menu();
-            this.Close();
-            menu.Show();
+            tcMenu.Visibility = Visibility.Visible;
+            spPageConnexion.Visibility = Visibility.Hidden;
+
+            creerCommande = true;
+            if (creerCommande)
+            {
+                dgListeProduit.Items.Filter = ContientMotClef;
+
+                dpCreationCommande.SelectedDate = DateTime.Today;
+            }
         }
 
-        private void butAnnuler_Click(object sender, RoutedEventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Menu menu = new Menu();
-            this.Close();
-            menu.Show();
+            DataAccess.Instance.DeconnexionBD();
         }
 
         private bool ContientMotClef(object obj)
@@ -64,6 +60,11 @@ namespace MaquetteBotanic
         private void tbRechercheProduit_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(dgListeProduit.ItemsSource).Refresh();
+        }
+
+        private void butValider_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void butAjouter_Click(object sender, RoutedEventArgs e)
