@@ -19,7 +19,6 @@ namespace MaquetteBotanic
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DataAccess connexion = new DataAccess();
         bool ajouter = false;
         bool supprimer = false;
         bool creerCommande = false;
@@ -39,8 +38,7 @@ namespace MaquetteBotanic
             if (creerCommande)
             {
                 dgListeProduit.Items.Filter = ContientMotClef;
-
-                dpCreationCommande.SelectedDate = DateTime.Today;
+                dpCreationCommande.Text = DateTime.Today.ToString();
             }
         }
 
@@ -65,21 +63,17 @@ namespace MaquetteBotanic
 
         private void butValider_Click(object sender, RoutedEventArgs e)
         {
-            //FicheClient fiche = new FicheClient(Mode.Creation);
-            //fiche.DataContext = nouvelleCommande;
-            //fiche.ShowDialog();
+            CommandeAchat nouvelleCommande = new CommandeAchat();
+            nouvelleCommande.AjouteListe(ApplicationData.LesProduitsAjoutes);
+            //nouvelleCommande.CalculePrixTotal();
+            //dpCreationCommande.GetBindingExpression(DatePicker.SelectedDateProperty).UpdateSource();
+            ApplicationData.LesCommandes.Add(nouvelleCommande);
+            Console.WriteLine("Commande ajoutée.");
+            creerCommande = false;
 
-            ApplicationData.LesCommandes.Add((CommandeAchat)gCreerCommande.DataContext);
+            
 
-
-            /*
-            if (fiche.DialogResult == true)
-            {
-                data.LesClients.Add(nouveauClient);
-                dgClients.SelectedItem = nouveauClient;
-                data.Create(nouveauClient);
-            }
-            */
+            //ApplicationData.LesCommandes.Add((CommandeAchat)gCreerCommande.DataContext);
         }
 
         private void butAjouter_Click(object sender, RoutedEventArgs e)

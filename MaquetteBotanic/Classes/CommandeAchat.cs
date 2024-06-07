@@ -11,13 +11,18 @@ namespace MaquetteBotanic
     public class CommandeAchat
     {
         private int num;
+        private string nom;
         private ModeTransport mode;
         private Magasin magasin;
         private DateTime dateCommande;
         private DateTime dateLivraison;
         private string modeLivraison;
 
+        private static int numAuto = 0;
+
         private ObservableCollection<Produit> sesProduits;
+
+        private double prixTotal;
 
         public int Num
         {
@@ -29,6 +34,19 @@ namespace MaquetteBotanic
             set
             {
                 num = value;
+            }
+        }
+
+        public string Nom
+        {
+            get
+            {
+                return this.nom;
+            }
+
+            set
+            {
+                this.nom = value;
             }
         }
 
@@ -97,6 +115,19 @@ namespace MaquetteBotanic
             }
         }
 
+        public static int NumAuto
+        {
+            get
+            {
+                return numAuto;
+            }
+
+            set
+            {
+                numAuto = value;
+            }
+        }
+
         public ObservableCollection<Produit> SesProduits
         {
             get
@@ -110,71 +141,91 @@ namespace MaquetteBotanic
             }
         }
 
+        public double PrixTotal
+        {
+            get
+            {
+                return this.prixTotal;
+            }
+
+            set
+            {
+                this.prixTotal = value;
+            }
+        }     
+
         public CommandeAchat()
         {
+            CommandeAchat.NumAuto++;
+            this.Num = CommandeAchat.NumAuto;
             this.SesProduits = new ObservableCollection<Produit>();
+            this.DateCommande = DateTime.Today;
+            this.NomAJour();
         }
 
-        public CommandeAchat(int num, string modeTransport, int numMagasin, string dateCommande, string modeLivraison) : this()
+        public CommandeAchat(int num, string modeTransport, int numMagasin, string dateCommande, string dateLivraison,string modeLivraison) : this()
         {
             this.Num = num;
             this.Mode = new ModeTransport(modeTransport);
             this.Magasin = new Magasin(numMagasin);
             this.DateCommande = DateTime.Parse(dateCommande);
+            this.DateLivraison = DateTime.Parse(dateLivraison);
             this.ModeLivraison = modeLivraison;
+        }
+
+        public void NomAJour()
+        {
+            this.Nom = $"Commande n°{this.Num}";
         }
 
         public static ObservableCollection<CommandeAchat> Read()
         {
-            ObservableCollection<Produit> lesCommandes = new ObservableCollection<Produit>();
+            ObservableCollection<CommandeAchat> lesCommandes = new ObservableCollection<CommandeAchat>();
 
-            String sql = "SELECT num_commande, mode_transport, num_magasin, date_commande, " +
-                         "date_livraison, mode_livraison, num_produit, nom_produit, prix_vente, quantite_commandee " +
-                         "FROM commande_achat com " +
-                         "JOIN mode_de_transport mode ON mode.mode_transport = com.mode_transport " +
-                         "JOIN magasin mag ON mag.num_magasin = com.num_magasin " +
-                         "JOIN detail_commande de ON de.num_commande = com.num_commande";
+            String sql = "SELECT com.num_commande, com.mode_transport, com.num_magasin, date_commande, " +
+                         "date_livraison, mode_livraison " +
+                         "FROM commande_achat com";
 
             DataTable dt = DataAccess.Instance.GetData(sql);
 
             foreach (DataRow res in dt.Rows)
             {
-                int numProduit = int.Parse(res["num_produit"].ToString());
-                Produit produit = lesProduits.FirstOrDefault(p => p.Num == numProduit);
+                int numCommande = int.Parse(res["num_commande"].ToString());
+                CommandeAchat commande = lesCommandes.FirstOrDefault(c => c.Num == numCommande);
 
-                if (produit == null)
+                if (commande == null)
                 {
-                    produit = new Produit
+                    commande = new CommandeAchat
                     (
-                        int.Parse(res["num_produit"].ToString()),
-                        res["nom_couleur"].ToString(),
-                        int.Parse(res["num_fournisseur"].ToString()),
-                        int.Parse(res["num_categorie"].ToString()),
-                        res["nom_produit"].ToString(),
-                        res["taille_produit"].ToString(),
-                        res["description_produit"].ToString(),
-                        double.Parse(res["prix_vente"].ToString()),
-                        double.Parse(res["prix_achat"].ToString())
+                        int.Parse(res["num_commande"].ToString()),
+                        res["mode_transport"].ToString(),
+                        int.Parse(res["num_magasin"].ToString()),
+                        res["date_commande"].ToString(),
+                        res["date_livraison"].ToString(),
+                        res["mode_livraison"].ToString()
                     );
-                    lesProduits.Add(produit);
+                    lesCommandes.Add(commande);
                 }
-
-                DetailCaracteristique valeur = new DetailCaracteristique
-                (
-                    int.Parse(res["num_produit"].ToString()),
-                    int.Parse(res["num_caracteristique"].ToString()),
-                    res["valeur_caracteristique"].ToString()
-                );
-                produit.ValeurCaracteristiques.Add(valeur);
-
-                Caracteristique nom = new Caracteristique
-                (
-                    int.Parse(res["num_caracteristique"].ToString()),
-                    res["nom_caracteristique"].ToString()
-                );
-                produit.NomCaracteristiques.Add(nom);
             }
-            return lesProduits;
+            return lesCommandes;
+        }
+
+        public ObservableCollection<Produit> AjouteListe(ObservableCollection<Produit> lesProduits)
+        {
+            foreach(Produit produit in lesProduits)
+            {
+                this.SesProduits.Add(produit);
+            }
+            return this.SesProduits;
+        }
+
+        public double CalculePrixTotal()
+        {
+            foreach(Produit produit in this.SesProduits)
+            {
+                this.PrixTotal += produit.PrixTotal;
+            }
+            return this.PrixTotal;
         }
     }
 }

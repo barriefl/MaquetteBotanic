@@ -116,7 +116,7 @@ namespace MaquetteBotanic
             LesCouleurs = Couleur.Read();
             LesProduits = Produit.Read();
             LesTransports = ModeTransport.Read();
-            //LesCommandes = CommandeAchat.Read();
+            LesCommandes = CommandeAchat.Read();
         }
     }
 }

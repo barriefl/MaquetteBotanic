@@ -71,6 +71,7 @@ namespace MaquetteBotanic
         {
             try
             {
+                Console.WriteLine(selectSQL);
                 NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(selectSQL, Connexion);
                 DataTable dataTable = new DataTable();
                 dataAdapter.Fill(dataTable);

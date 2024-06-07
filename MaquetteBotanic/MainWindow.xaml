@@ -1,10 +1,11 @@
-﻿<Window x:Name="mainWindow"
+﻿<Window
     x:Class="MaquetteBotanic.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MaquetteBotanic"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="mainWindow"
     Title="Service achat"
     Width="1400"
     Height="850"
@@ -60,7 +61,7 @@
                     Content="Mot de passe"
                     FontSize="24"
                     FontWeight="Bold"
-                    Foreground="#FF00644C"/>
+                    Foreground="#FF00644C" />
                 <PasswordBox
                     x:Name="tbPassword"
                     Width="400"
@@ -83,7 +84,8 @@
                 Click="butConnexion_Click"
                 Content="Se connecter"
                 FontSize="24"
-                Foreground="White" IsDefault="True" />
+                Foreground="White"
+                IsDefault="True" />
         </StackPanel>
         <TabControl x:Name="tcMenu" FontSize="24">
             <TabItem x:Name="tiCreerCommande" Header="Créer une commande">
@@ -97,7 +99,7 @@
                                 Content="Centrale d'achats Botanic"
                                 FontSize="16"
                                 Foreground="#FF00644C"
-                                IsChecked="{Binding ModeLivraison}"/>
+                                IsChecked="{Binding ModeLivraison}" />
                             <RadioButton
                                 x:Name="rbLocal"
                                 Margin="100,0,0,0"
@@ -105,8 +107,8 @@
                                 BorderThickness="2,2,2,2"
                                 Content="Achats fournisseurs locaux"
                                 FontSize="16"
-                                Foreground="#FF00644C" 
-                                IsChecked="{Binding ModeLivraison}"/>
+                                Foreground="#FF00644C"
+                                IsChecked="{Binding ModeLivraison}" />
                         </StackPanel>
                         <TextBox
                             x:Name="tbRechercheProduit"
@@ -279,9 +281,10 @@
                                 BorderThickness="2,2,2,2"
                                 FontSize="16"
                                 Foreground="#FF00644C"
+                                GridLinesVisibility="Horizontal"
                                 HorizontalGridLinesBrush="#FF00644C"
                                 ItemsSource="{Binding LesProduitsAjoutes}"
-                                ScrollViewer.HorizontalScrollBarVisibility="Disabled" GridLinesVisibility="Horizontal">
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn
                                         Width="275"
@@ -376,12 +379,31 @@
                             Height="175"
                             Margin="0,10,0,0"
                             HorizontalAlignment="Left"
-                            ItemsSource="{Binding LesCommandes}"
+                            AutoGenerateColumns="False"
                             BorderBrush="#FF003D29"
                             BorderThickness="2,2,2,2"
                             FontSize="16"
                             Foreground="#FF00644C"
-                            ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+                            ItemsSource="{Binding LesCommandes}"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="275"
+                                    Binding="{Binding Nom}"
+                                    FontWeight="Normal"
+                                    Header="Nom" />
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding DateCommande, StringFormat={}{0:dd/MM/yyyy}}"
+                                    FontWeight="Normal"
+                                    Header="Date" />
+                                <DataGridTextColumn
+                                    Width="125"
+                                    Binding="{Binding PrixTotal}"
+                                    FontWeight="Normal"
+                                    Header="Total" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <Rectangle
                             Height="4"
                             Margin="0,15,0,15"
@@ -409,7 +431,7 @@
                                 x:Name="dgDetailCommande"
                                 Width="500"
                                 Height="150"
-                                d:ItemsSource="{d:SampleData ItemCount=5}"
+                                ItemsSource="{Binding SesProduits}"
                                 BorderBrush="#FF003D29"
                                 BorderThickness="2,2,2,2"
                                 FontSize="16"
