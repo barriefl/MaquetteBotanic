@@ -65,7 +65,7 @@ namespace MaquetteBotanic
         {
             CommandeAchat nouvelleCommande = new CommandeAchat();
             nouvelleCommande.AjouteListe(ApplicationData.LesProduitsAjoutes);
-            //nouvelleCommande.CalculePrixTotal();
+            nouvelleCommande.CalculePrixTotal();
             //dpCreationCommande.GetBindingExpression(DatePicker.SelectedDateProperty).UpdateSource();
             ApplicationData.LesCommandes.Add(nouvelleCommande);
             Console.WriteLine("Commande ajoutée.");
