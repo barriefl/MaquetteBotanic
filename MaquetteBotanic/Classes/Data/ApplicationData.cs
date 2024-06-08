@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MaquetteBotanic
 {
-    public class ApplicationData
+    public class ApplicationData : INotifyPropertyChanged
     {
         private static ObservableCollection<TypeProduit> lesTypes;
         private static ObservableCollection<Categorie> lesCategories;
@@ -17,6 +19,9 @@ namespace MaquetteBotanic
         private static ObservableCollection<ModeTransport> lesTransports;
         private static ObservableCollection<Produit> lesProduitsAjoutes = new ObservableCollection<Produit>();
         private static ObservableCollection<CommandeAchat> lesCommandes;
+        private static CommandeAchat commandeSelectionnee;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public static ObservableCollection<TypeProduit> LesTypes
         {
@@ -109,6 +114,20 @@ namespace MaquetteBotanic
             }
         }
 
+        public CommandeAchat CommandeSelectionnee
+        {
+            get
+            {
+                return commandeSelectionnee;
+            }
+
+            set
+            {
+                commandeSelectionnee = value;
+                OnPropertyChanged(nameof(CommandeSelectionnee));
+            }
+        }
+
         public ApplicationData()
         {
             LesTypes = TypeProduit.Read();
@@ -117,6 +136,11 @@ namespace MaquetteBotanic
             LesProduits = Produit.Read();
             LesTransports = ModeTransport.Read();
             LesCommandes = CommandeAchat.Read();
+        }
+
+        protected virtual void OnPropertyChanged(string propriete)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propriete));
         }
     }
 }

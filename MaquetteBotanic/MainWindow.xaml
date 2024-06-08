@@ -385,7 +385,8 @@
                             FontSize="16"
                             Foreground="#FF00644C"
                             ItemsSource="{Binding LesCommandes}"
-                            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            SelectedItem="{Binding CommandeSelectionnee}"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF00644C">
                             <DataGrid.Columns>
                                 <DataGridTextColumn
                                     Width="275"
@@ -423,20 +424,44 @@
                             Width="120"
                             Margin="0,5,0,0"
                             HorizontalAlignment="Left"
-                            Content="Commande n°02837"
+                            Content="{Binding CommandeSelectionnee.Nom}"
                             FontSize="16"
                             Foreground="#FF00644C" />
                         <StackPanel Orientation="Horizontal">
                             <DataGrid
                                 x:Name="dgDetailCommande"
-                                Width="500"
+                                Width="625"
                                 Height="150"
-                                ItemsSource="{Binding SesProduits}"
+                                ItemsSource="{Binding CommandeSelectionnee.SesProduits}"
                                 BorderBrush="#FF003D29"
                                 BorderThickness="2,2,2,2"
                                 FontSize="16"
                                 Foreground="#FF00644C"
-                                ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+                                AutoGenerateColumns="False"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF00644C">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                        Width="275"
+                                        Binding="{Binding Nom}"
+                                        FontWeight="Normal"
+                                        Header="Nom" />
+                                    <DataGridTextColumn
+                                        Width="100"
+                                        Binding="{Binding QuantiteCommandee}"
+                                        FontWeight="Normal"
+                                        Header="Quantité" />
+                                    <DataGridTextColumn
+                                        Width="125"
+                                        Binding="{Binding PrixVente}"
+                                        FontWeight="Normal"
+                                        Header="Prix" />
+                                    <DataGridTextColumn
+                                        Width="125"
+                                        Binding="{Binding PrixTotal}"
+                                        FontWeight="Normal"
+                                        Header="Total" />
+                                </DataGrid.Columns>
+                            </DataGrid>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label
@@ -450,7 +475,7 @@
                                 Width="200"
                                 Margin="75,5,0,0"
                                 HorizontalAlignment="Left"
-                                Content="{Binding Mode}"
+                                Content="{Binding CommandeSelectionnee.ModeLivraison}"
                                 FontSize="16"
                                 Foreground="#FF00644C" />
                         </StackPanel>
@@ -471,7 +496,7 @@
                                 FirstDayOfWeek="Monday"
                                 FontSize="16"
                                 Foreground="#FF00644C"
-                                Text="{Binding DateLivraison}" />
+                                Text="{Binding CommandeSelectionnee.DateLivraison}" />
                         </StackPanel>
                         <Button
                             x:Name="butRetourMenu"

@@ -19,6 +19,7 @@ namespace MaquetteBotanic
     /// </summary>
     public partial class MainWindow : Window
     {
+
         bool ajouter = false;
         bool supprimer = false;
         bool creerCommande = false;

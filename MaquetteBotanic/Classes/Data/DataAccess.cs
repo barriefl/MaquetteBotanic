@@ -11,12 +11,19 @@ namespace MaquetteBotanic
     public class DataAccess
     {
         private static DataAccess instance;
+        /*
         private static string strConnexion = "Server=srv-peda-new;" +
                                              "port=5433;" +
                                              "Database=botanicTP12;" +
                                              "Search Path = botanic;" +
                                              "uid=crouten;" +
                                              "password=ywmmkX;";
+        */
+        private static string strConnexion = "Server=localhost;" +
+                                             "port=5432;" +
+                                             "Database=botanic;" +
+                                             "uid=postgres;" +
+                                             "password=postgres;";
         public DataAccess()
         {
             ConnexionBD();
