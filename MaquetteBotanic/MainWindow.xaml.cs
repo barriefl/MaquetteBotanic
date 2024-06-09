@@ -100,17 +100,18 @@ namespace MaquetteBotanic
             string identifiantSaisie = tbLogin.Text;
             string passwordSaisie = tbPassword.Password;
 
-            /*
+            
             string strConnexion = "Server=srv-peda-new;" +
                                   "port=5433;" +
                                   "Database=botanicTP12;" +
                                   $"Search Path=botanic; uid={identifiantSaisie};password={passwordSaisie};";
-            */
+            /*
             string strConnexion = "Server=localhost;" +
                                   "port=5432;" +
                                   "Database=botanic;" +
                                   $"uid={identifiantSaisie};" +
                                   $"password={passwordSaisie};";
+            */
 
             if (DataAccess.Instance.ConnexionBD(strConnexion))
             {
