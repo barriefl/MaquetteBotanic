@@ -10,20 +10,39 @@ using System.Windows;
 
 namespace MaquetteBotanic
 {
+
     public class ApplicationData : INotifyPropertyChanged
     {
+        private static ApplicationData instance;
+
         private static ObservableCollection<TypeProduit> lesTypes;
+        private TypeProduit typeSelectionne;
         private static ObservableCollection<Categorie> lesCategories;
+        private Categorie categorieSelectionnee;
         private static ObservableCollection<Couleur> lesCouleurs;
+        private Couleur couleurSelectionnee;
         private static ObservableCollection<Produit> lesProduits;
+        private ObservableCollection<Produit> lesProduitsFiltres;
         private static ObservableCollection<ModeTransport> lesTransports;
         private static ObservableCollection<Produit> lesProduitsAjoutes = new ObservableCollection<Produit>();
         private static ObservableCollection<CommandeAchat> lesCommandes;
-        private static CommandeAchat commandeSelectionnee;
+        private CommandeAchat commandeSelectionnee;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public static ObservableCollection<TypeProduit> LesTypes
+        public static ApplicationData Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new ApplicationData();
+                }
+                return instance;
+            }
+        }
+
+        public ObservableCollection<TypeProduit> LesTypes
         {
             get
             {
@@ -33,6 +52,21 @@ namespace MaquetteBotanic
             set
             {
                 lesTypes = value;
+            }
+        }
+
+        public TypeProduit TypeSelectionne
+        {
+            get
+            {
+                return this.typeSelectionne;
+            }
+
+            set
+            {
+                this.typeSelectionne = value;
+                OnPropertyChanged(nameof(TypeSelectionne));
+                FiltrerProduits();
             }
         }
 
@@ -49,6 +83,21 @@ namespace MaquetteBotanic
             }
         }
 
+        public Categorie CategorieSelectionnee
+        {
+            get
+            {
+                return this.categorieSelectionnee;
+            }
+
+            set
+            {
+                this.categorieSelectionnee = value;
+                OnPropertyChanged(nameof(CategorieSelectionnee));
+                FiltrerProduits();
+            }
+        }
+
         public static ObservableCollection<Couleur> LesCouleurs
         {
             get
@@ -62,6 +111,20 @@ namespace MaquetteBotanic
             }
         }
 
+        public Couleur CouleurSelectionnee
+        {
+            get
+            {
+                return this.couleurSelectionnee;
+            }
+
+            set
+            {
+                this.couleurSelectionnee = value;
+                OnPropertyChanged(nameof(CouleurSelectionnee));
+            }
+        }
+
         public static ObservableCollection<Produit> LesProduits
         {
             get
@@ -72,6 +135,20 @@ namespace MaquetteBotanic
             set
             {
                 lesProduits = value;
+            }
+        }
+
+        public ObservableCollection<Produit> LesProduitsFiltres
+        {
+            get
+            {
+                return lesProduitsFiltres;
+            }
+
+            set
+            {
+                lesProduitsFiltres = value;
+                OnPropertyChanged(nameof(LesProduitsFiltres));
             }
         }
 
@@ -134,13 +211,20 @@ namespace MaquetteBotanic
             LesCategories = Categorie.Read();
             LesCouleurs = Couleur.Read();
             LesProduits = Produit.Read();
+            LesProduitsFiltres = new ObservableCollection<Produit>(LesProduits);
             LesTransports = ModeTransport.Read();
             LesCommandes = CommandeAchat.Read();
         }
 
-        protected virtual void OnPropertyChanged(string propriete)
+        protected virtual void OnPropertyChanged(string proprietee)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propriete));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(proprietee));
+        }
+
+        public void FiltrerProduits()
+        {
+            var produitsFiltres = LesProduits.Where(produit => produit.Categorie != null && produit.Categorie.Type != null && produit.Categorie.Type.Num == TypeSelectionne.Num && produit.Categorie.Num == CategorieSelectionnee.Num);
+            LesProduitsFiltres = new ObservableCollection<Produit>(produitsFiltres);
         }
     }
 }

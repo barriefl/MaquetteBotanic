@@ -225,6 +225,7 @@ namespace MaquetteBotanic
             {
                 this.PrixTotal += produit.PrixTotal;
             }
+            Math.Round(this.PrixTotal, 2);
             return this.PrixTotal;
         }
     }

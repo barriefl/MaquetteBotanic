@@ -5,28 +5,17 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MaquetteBotanic
 {
     public class DataAccess
     {
         private static DataAccess instance;
-        /*
-        private static string strConnexion = "Server=srv-peda-new;" +
-                                             "port=5433;" +
-                                             "Database=botanicTP12;" +
-                                             "Search Path = botanic;" +
-                                             "uid=crouten;" +
-                                             "password=ywmmkX;";
-        */
-        private static string strConnexion = "Server=localhost;" +
-                                             "port=5432;" +
-                                             "Database=botanic;" +
-                                             "uid=postgres;" +
-                                             "password=postgres;";
+
         public DataAccess()
         {
-            ConnexionBD();
+            
         }
 
         public static DataAccess Instance
@@ -47,7 +36,7 @@ namespace MaquetteBotanic
             set;
         }
 
-        public void ConnexionBD()
+        public bool ConnexionBD(string strConnexion)
         {
             try
             {
@@ -55,11 +44,13 @@ namespace MaquetteBotanic
                 Connexion.ConnectionString = strConnexion;
                 Connexion.Open();
                 Console.WriteLine("Connexion réussie.");
+                return true;
             }
             catch (Exception e)
             {
                 Console.WriteLine("pb de connexion : " + e);
-                // juste pour le debug : à transformer en MsgBox 
+                MessageBox.Show("Password / Login incorrect");
+                return false;
             }
         }
 

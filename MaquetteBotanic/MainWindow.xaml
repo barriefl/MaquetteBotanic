@@ -12,10 +12,6 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
-    <Window.DataContext>
-        <local:ApplicationData x:Name="data" />
-    </Window.DataContext>
-
     <Grid Background="#FFFAFFFA">
         <StackPanel
             x:Name="spPageConnexion"
@@ -37,7 +33,7 @@
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                 <Label
                     x:Name="labLogin"
-                    Content="Nom d'utilisateur"
+                    Content="_Nom d'utilisateur"
                     FontSize="24"
                     FontWeight="Bold"
                     Foreground="#FF00644C"
@@ -58,7 +54,7 @@
                 <Label
                     x:Name="labPassword"
                     Margin="0,20,0,0"
-                    Content="Mot de passe"
+                    Content="_Mot de passe"
                     FontSize="24"
                     FontWeight="Bold"
                     Foreground="#FF00644C" />
@@ -88,7 +84,7 @@
                 IsDefault="True" />
         </StackPanel>
         <TabControl x:Name="tcMenu" FontSize="24">
-            <TabItem x:Name="tiCreerCommande" Header="Créer une commande">
+            <TabItem x:Name="tiCreerCommande" Header="Créer une commande" FontWeight="Bold" Foreground="#FF00644C">
                 <Grid x:Name="gCreerCommande" Background="#FFFAFFFA">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal">
@@ -148,21 +144,24 @@
                                 Width="200"
                                 FontSize="16"
                                 Foreground="#FF00644C"
-                                ItemsSource="{Binding LesTypes}" />
+                                ItemsSource="{Binding LesTypes}"
+                                SelectedItem="{Binding TypeSelectionne}"/>
                             <ComboBox
                                 x:Name="cbCategorie"
                                 Width="200"
                                 Margin="100,0,0,0"
                                 FontSize="16"
                                 Foreground="#FF00644C"
-                                ItemsSource="{Binding LesCategories}" />
+                                ItemsSource="{Binding LesCategories}"
+                                SelectedItem="{Binding CategorieSelectionnee}"/>
                             <ComboBox
                                 x:Name="cbCouleur"
                                 Width="200"
                                 Margin="100,0,0,0"
                                 FontSize="16"
                                 Foreground="#FF00644C"
-                                ItemsSource="{Binding LesCouleurs}" />
+                                ItemsSource="{Binding LesCouleurs}"
+                                SelectedItem="{Binding CouleurSelectionnee}"/>
                         </StackPanel>
                         <CheckBox
                             x:Name="cbFournisseurLocal"
@@ -192,7 +191,7 @@
                                 GridLinesVisibility="Horizontal"
                                 HorizontalGridLinesBrush="#FF00644C"
                                 HorizontalScrollBarVisibility="Disabled"
-                                ItemsSource="{Binding LesProduits}">
+                                ItemsSource="{Binding LesProduitsFiltres}">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn
                                         Width="275"
@@ -238,17 +237,13 @@
                                 Content="Date de création"
                                 FontSize="16"
                                 Foreground="#FF00644C"
-                                Target="{Binding ElementName=dpCreationCommande, Mode=OneWay}" />
-                            <DatePicker
-                                x:Name="dpCreationCommande"
+                                Target="{Binding ElementName=labDateCreation, Mode=OneWay}" />
+                            <Label x:Name="labDateCreation"
+                                Width="150"
                                 Margin="50,0,0,5"
-                                BorderBrush="#FF003D2E"
-                                BorderThickness="2,2,2,2"
-                                FirstDayOfWeek="Monday"
+                                Content="{Binding DateCommande}"
                                 FontSize="16"
-                                Foreground="#FF00644C"
-                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                Text="{Binding DateCommande}" />
+                                Foreground="#FF00644C"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label
@@ -346,7 +341,7 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tiVisualiserCommande" Header="Visualiser les commandes">
+            <TabItem x:Name="tiVisualiserCommande" Header="Visualiser les commandes" FontWeight="Bold" Foreground="#FF00644C">
                 <Grid x:Name="gVisualiserCommande" Background="#FFFAFFFA">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal">
@@ -360,7 +355,7 @@
                                 BorderThickness="2,2,2,2"
                                 FontSize="16"
                                 Foreground="#FF00644C"
-                                TextWrapping="Wrap" />
+                                TextWrapping="Wrap" TextChanged="tbRechercheCommande_TextChanged" />
                             <Image
                                 Width="350"
                                 Margin="350,0,0,0"
@@ -499,17 +494,17 @@
                                 Text="{Binding CommandeSelectionnee.DateLivraison}" />
                         </StackPanel>
                         <Button
-                            x:Name="butRetourMenu"
+                            x:Name="butValiderCommande"
                             Width="200"
                             Height="50"
                             Margin="0,20,0,0"
                             Background="#FF00644C"
                             BorderBrush="#FF004C29"
                             BorderThickness="2,2,2,2"
-                            Content="Retour au menu"
-                            FontSize="16"
+                            Content="Valider"
+                            FontSize="22"
                             Foreground="White"
-                            IsCancel="True" />
+                            IsCancel="True" Click="butValiderCommande_Click" />
                     </StackPanel>
                 </Grid>
             </TabItem>

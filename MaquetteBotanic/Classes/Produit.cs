@@ -222,19 +222,22 @@ namespace MaquetteBotanic
         {
             ObservableCollection<Produit> lesProduits = new ObservableCollection<Produit>();
 
-            String sql = "SELECT pro.num_produit, nom_couleur, num_fournisseur, num_categorie, " +
+            String sql = "SELECT pro.num_produit, nom_couleur, num_fournisseur, pro.num_categorie, " +
                          "nom_produit, taille_produit, description_produit, prix_vente, prix_achat, de.num_caracteristique, " +
-                         "car.nom_caracteristique, de.valeur_caracteristique " + 
+                         "car.nom_caracteristique, de.valeur_caracteristique, ty.num_type " +
                          "FROM produit pro " +
                          "JOIN detail_caracteristique de ON de.num_produit = pro.num_produit " +
-                         "JOIN caracteristique car ON car.num_caracteristique = de.num_caracteristique";
+                         "JOIN caracteristique car ON car.num_caracteristique = de.num_caracteristique " +
+                         "JOIN categorie cat ON cat.num_categorie = pro.num_categorie " +
+                         "JOIN type_produit ty ON ty.num_type = cat.num_type " +
+                         "WHERE ty.num_type = cat.num_type AND pro.num_categorie = cat.num_categorie";
 
             DataTable dt = DataAccess.Instance.GetData(sql);
 
             foreach (DataRow res in dt.Rows)
             {
                 int numProduit = int.Parse(res["num_produit"].ToString());
-                Produit produit = lesProduits.FirstOrDefault(p => p.Num == numProduit);
+                Produit produit = lesProduits.FirstOrDefault(produit => produit.Num == numProduit);
 
                 if (produit == null)
                 {
@@ -273,7 +276,7 @@ namespace MaquetteBotanic
 
         public double CalculePrixTotal()
         {
-            return this.PrixTotal = this.QuantiteCommandee * this.PrixVente;
+            return this.PrixTotal = Math.Round(this.QuantiteCommandee * this.PrixVente, 2);
         }
     }
 }
